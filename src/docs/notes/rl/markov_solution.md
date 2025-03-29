@@ -52,6 +52,7 @@ V = compute_value(P, rewards, gamma, 6)  # [[-2.01950168],[-2.21451846],[ 1.1614
 ## 3. 马尔可夫决策过程
 ![](/imgs/rl/markov/mdp_eg.png)
 
+::: details code
 ```python
 import numpy as np
 
@@ -127,6 +128,7 @@ R_from_mdp_to_mrp = [-0.5, -1.5, -1.0, 5.5, 0]
 V = compute_value(P_from_mdp_to_mrp, R_from_mdp_to_mrp, gamma, 5)
 # [[-1.22555411], [-1.67666232], [ 0.51890482], [ 6.0756193 ], [ 0.        ]]
 ```
+:::
 
 ## 4. 蒙特卡洛方法（Monte-Carlo methods）
 通过使用重复随机抽样，运用概率统计方法来从抽样结果中归纳出想求的目标的数值估计。
