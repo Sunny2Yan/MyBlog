@@ -9,7 +9,7 @@ export default defineConfig({
   description: "This is my knowledge base, primarily documenting key insights from my studies and professional work.",
   head: [['link', {rel: 'icon', href: '/logo_1.png'}]],
   lastUpdated: true,
-  // base: '/base/',
+  base: '/MyBlog/',
   // rewrites: {
   //   'packages/:pkg/src/(.*)': ':pkg/index.md'
   // },
