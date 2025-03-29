@@ -1,0 +1,11 @@
+node_modules
+dist
+.idea
+.DS_Store
+dist-ssr
+cache
+.cache
+.temp
+*.local
+package.json
+package-lock.json
