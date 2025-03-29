@@ -44,7 +44,7 @@ export default defineConfig({
       {text: '代码', link: '/markdown-examples'},
       { text: '笔记', items: [
           {text: 'llm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
-          {text: 'rl', link: '/docs/notes/rl/aa.md'}]},
+          {text: 'rl', link: '/docs/notes/rl/markov_decision.md'}]},
       {text: '论文', items: [
           {text: 'llm', link: '/'}
         ]}
