@@ -7,5 +7,3 @@ cache
 .cache
 .temp
 *.local
-package.json
-package-lock.json
