@@ -10,9 +10,10 @@ export default defineConfig({
   head: [['link', {rel: 'icon', href: '/MyBlog/logo_1.png'}]],
   lastUpdated: true,
   base: '/MyBlog/',
-  rewrites: {
-    'packages/:pkg/src/(.*)': ':pkg/index.md'
-  },
+  cleanUrls: true,
+  // rewrites: {
+  //   'packages/:pkg/src/(.*)': ':pkg/index.md'
+  // },
   themeConfig: {
     outlineTitle: '目录',
     outline: [2, 6],  // 生成2-6级标题
