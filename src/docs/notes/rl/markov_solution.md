@@ -9,6 +9,7 @@
 
 ![](/imgs/rl/markov/mrp_eg.png)
 
+::: details code
 ```python
 import numpy as np
 np.random.seed(0)
@@ -48,6 +49,7 @@ def compute_value(P, rewards, gamma, states_num):
 
 V = compute_value(P, rewards, gamma, 6)  # [[-2.01950168],[-2.21451846],[ 1.16142785],[10.53809283],[ 3.58728554],[ 0.        ]]
 ```
+:::
 
 ## 3. 马尔可夫决策过程
 ![](/imgs/rl/markov/mdp_eg.png)
