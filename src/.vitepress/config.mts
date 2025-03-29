@@ -7,7 +7,7 @@ import { set_sidebar } from './utils/auto_sidebar.js'
 export default defineConfig({
   title: "Yan's Blog",
   description: "This is my knowledge base, primarily documenting key insights from my studies and professional work.",
-  head: [['link', {rel: 'icon', href: '/logo_1.png'}]],
+  head: [['link', {rel: 'icon', href: '/MyBlog/logo_1.png'}]],
   lastUpdated: true,
   base: '/MyBlog/',
   // rewrites: {
