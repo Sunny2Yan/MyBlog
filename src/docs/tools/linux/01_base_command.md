@@ -89,7 +89,7 @@ uname = Unix name 系统名称
 wc = Word Count
 wall = write all
 ```
-
+:::
 
 ## 5. 参数说明
 ::: details details
