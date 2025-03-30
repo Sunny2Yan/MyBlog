@@ -53,7 +53,7 @@ export default defineConfig({
           {text: 'Linux', link: '/docs/tools/linux/01_base_command.md'},
           {text: 'Python', link: '/docs/tools/python/'},
           {text: 'C++', link: '/docs/tools/c++/'},
-          {text: 'Rust', link: '/docs/tools/rust/'},
+          {text: 'Rust', link: '/docs/tools/rust/01_annotation.md'},
           {text: 'DataBase', link: '/docs/tools/database/'},
           {text: 'Docker', link: '/docs/tools/docker/01_docker.md'},
           {text: 'Configuration', link: '/docs/tools/configuration/01_ini.md'},
