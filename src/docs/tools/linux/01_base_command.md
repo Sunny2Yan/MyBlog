@@ -58,7 +58,7 @@ passwd root
 ```
 
 ## 4. 命令全称
-
+::: details details
 ```bash
 alias = Create your own name for a command
 bash = GNU Bourne-Again Shell linux内核
@@ -89,10 +89,10 @@ uname = Unix name 系统名称
 wc = Word Count
 wall = write all
 ```
-:::
+
 
 ## 5. 参数说明
-::: details code
+::: details details
 ```bash
 #: 管理员身份；$: 用户身份；su -:qi
 Tab: 内容补全; Ctrl+C: 终止进程; Ctrl+D: 输入结束; Ctrl+L: 清空终端
