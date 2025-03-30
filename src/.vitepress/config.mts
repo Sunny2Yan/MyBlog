@@ -41,23 +41,23 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: '家', link: '/' },
-      {text: '代码', link: '/'},
+      {text: '代码', link: '/docs/codes/'},
       { text: '笔记', items: [
           {text: 'LLm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
           {text: 'RL', link: '/docs/notes/rl/markov_decision.md'}]},
       {text: '论文', items: [
-          {text: 'LLM', link: '/docs/notes/papers/llm/'},
-          {text: 'Multimodal', link: '/docs/notes/papers/multimodal/'}
+          {text: 'LLM', link: '/docs/papers/llm/'},
+          {text: 'Multimodal', link: '/docs/papers/multimodal/'}
         ]},
       {text: '工具', items: [
-          {text: 'Linux', link: '/docs/notes/tools/linux/'},
-          {text: 'Python', link: '/docs/notes/tools/python/'},
-          {text: 'C++', link: '/docs/notes/tools/c++/'},
-          {text: 'Rust', link: '/docs/notes/tools/rust/'},
-          {text: 'DataBase', link: '/docs/notes/tools/database/'},
-          {text: 'Docker', link: '/docs/notes/tools/docker/'},
-          {text: 'Configuration', link: '/docs/notes/tools/configuration/01_ini.md'},
-          {text: 'Others', link: '/docs/notes/tools/others/01_setuptools.md'}
+          {text: 'Linux', link: '/docs/tools/linux/'},
+          {text: 'Python', link: '/docs/tools/python/'},
+          {text: 'C++', link: '/docs/tools/c++/'},
+          {text: 'Rust', link: '/docs/tools/rust/'},
+          {text: 'DataBase', link: '/docs/tools/database/'},
+          {text: 'Docker', link: '/docs/tools/docker/'},
+          {text: 'Configuration', link: '/docs/tools/configuration/01_ini.md'},
+          {text: 'Others', link: '/docs/tools/others/01_setuptools.md'}
         ]},
       {text: '杂记', items: [
           {text: 'other', link: '/'}
