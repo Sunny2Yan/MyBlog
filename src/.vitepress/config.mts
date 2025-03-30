@@ -43,7 +43,7 @@ export default defineConfig({
       { text: '家', link: '/' },
       {text: '代码', link: '/docs/codes/'},
       { text: '笔记', items: [
-          {text: 'LLm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
+          {text: 'LLM', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
           {text: 'RL', link: '/docs/notes/rl/markov_decision.md'}]},
       {text: '论文', items: [
           {text: 'LLM', link: '/docs/papers/llm/'},
