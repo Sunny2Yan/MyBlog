@@ -3,11 +3,11 @@
 ## 1. 马尔可夫过程
 马尔可夫过程就是一个状态转移图，如下所示：
 
-![](/imgs/rl/markov/mp_eg.png)
+![](/imgs/notes/rl/markov/mp_eg.png)
 
 ## 2. 马尔科夫奖励过程
 
-![](/imgs/rl/markov/mrp_eg.png)
+![](/imgs/notes/rl/markov/mrp_eg.png)
 
 ::: details code
 ```python
@@ -52,7 +52,7 @@ V = compute_value(P, rewards, gamma, 6)  # [[-2.01950168],[-2.21451846],[ 1.1614
 :::
 
 ## 3. 马尔可夫决策过程
-![](/imgs/rl/markov/mdp_eg.png)
+![](/imgs/notes/rl/markov/mdp_eg.png)
 
 ::: details code
 ```python
@@ -135,7 +135,7 @@ V = compute_value(P_from_mdp_to_mrp, R_from_mdp_to_mrp, gamma, 5)
 ## 4. 蒙特卡洛方法（Monte-Carlo methods）
 通过使用重复随机抽样，运用概率统计方法来从抽样结果中归纳出想求的目标的数值估计。
 
-![](/imgs/rl/markov/mc.png)
+![](/imgs/notes/rl/markov/mc.png)
 
 一个状态的价值是它的期望回报，于是用策略在 MDP 上采样很多条序列，计算从这个状态出发的回报再求其期望即可：
 $$V^{\pi}(s) = \mathbb{E}_{\pi}(G_t | S_t=s) \approx \frac{1}{N} \sum_{i=1}^N G_t^{(i)}$$
