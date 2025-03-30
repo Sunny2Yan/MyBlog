@@ -56,7 +56,7 @@ export default defineConfig({
           {text: 'Rust', link: '/tools/rust/'},
           {text: 'DataBase', link: '/tools/database/'},
           {text: 'Docker', link: '/tools/docker/'},
-          {text: 'Configuration', link: '/tool/configuration/01_ini.md'},
+          {text: 'Configuration', link: '/tools/configuration/01_ini.md'},
           {text: 'Others', link: '/tools/others/01_setuptools.md'}
         ]},
       {text: '杂记', items: [
