@@ -50,7 +50,7 @@ export default defineConfig({
           {text: 'Multimodal', link: '/docs/papers/multimodal/'}
         ]},
       {text: '工具', items: [
-          {text: 'Linux', link: '/docs/tools/linux/'},
+          {text: 'Linux', link: '/docs/tools/linux/01_base_command.md'},
           {text: 'Python', link: '/docs/tools/python/'},
           {text: 'C++', link: '/docs/tools/c++/'},
           {text: 'Rust', link: '/docs/tools/rust/'},
