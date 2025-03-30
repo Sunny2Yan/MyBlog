@@ -62,70 +62,57 @@ sudo usermod - aG docker $USER
 ```
 
 ## dockers 操作
-1. 查看操作
-```python
-1）docker image                 # 查看镜像
-2）docker ps                    # 查看当前正在运行的所有容器
-   docker ps -q                 # 静默模式，查看正在运行的容器id
-   docker ps -a                 # 查看容器id（运行 & 非运行）
-3）docker logs 容器名/容器id      # 查看容器日志（瞬间）
-   docker logs -f 容器名/容器id   # 实时展示日志
-   docker logs -tf 容器名/容器id  # 加入时间戳实时展示日志
-   docker logs --tail x 容器名/容器id  # 只显示日志的最后 x 行
-4）docker top 容器名/容器id        # 查看容器内的进程
-5）docker inspect 容器名/容器id    # 查看容器内部细节
-```
+```bash
+# 1. 查看操作
+docker image                 # 查看镜像
 
-2. 安装
-```python
+docker ps                    # 查看当前正在运行的所有容器
+docker ps -q                 # 静默模式，查看正在运行的容器id
+docker ps -a                 # 查看容器id（运行 & 非运行）
+
+docker logs 容器名/容器id      # 查看容器日志（瞬间）
+docker logs -f 容器名/容器id   # 实时展示日志
+docker logs -tf 容器名/容器id  # 加入时间戳实时展示日志
+docker logs --tail x 容器名/容器id  # 只显示日志的最后 x 行
+
+docker top 容器名/容器id        # 查看容器内的进程
+docker inspect 容器名/容器id    # 查看容器内部细节
+
+# 2. 安装
 docker load - i xx.tar           # 将tar镜像文件(安装包)导入到自己的库中
-```
 
-3. 运行
-```python
+# 3. 运行
 docker run 镜像名/镜像id                            # 运行一个容器
 docker run -p 8080(local): 8080(container) 镜像名  # 主机端口与容器端口进行映射
 docker run -d -p 8080: 8080 镜像名                 # 放到后台运行容器
 docker run -d -p 8080: 8080 --name 容器名称 镜像名  # 为镜像取名
-```
 
-4. 启动/关闭容器
-```python
+# 4. 启动/关闭容器
 docker start 容器名/容器id    # 启动容器
 docker restart 容器名/容器id  # 重启容器
 docker stop 容器名/容器id     # 正常停止容器
 docker kill 容器名/容器id     # 立即停止容器
-```
 
-5. 删除
-```python
+# 5. 删除
 docker rm 容器名/容器id          # 删除已经停止的容器
 docker rm -f 容器名/容器id       # 删除某个（停止 & 运行）容器
 docker rm -f $(docker ps -aq)  # 删除所有容器
-```
 
-6. 容器交互
-```python
+# 6. 容器交互
 docker exec - it 容器名/容器id bash  # 进入容器内部执行命令行
    exit                        # 退出
 docker cp 容器名/容器id: 容器资源路径本地路径  # 从容器复制文件到本地
 docker cp 文件/目录(local)容器名/容器id: /资源路径
-```
 
-7. 数据卷 volume
-```python
+# 7. 数据卷 volume
 # 将主机目录中全部内容会被清空
 docker run -d -p 8080: 8080 --name xx -v 宿主机目录(绝对路径): 容器内目录 容器名/容器id
 # aa代表数据卷的名字，docker会在不存在时自动创建，并在启动容器时将aa对应目录中全部内容复制到映射目录中
 docker run -d -p 8080: 8080 - -name xx -v aa(别名): 容器内目录 容器名/容器id
-```
 
-8. 容器打包成新的镜像
-```python
+# 8. 容器打包成新的镜像
 docker commit -m "描述" -a "作者" 容器id 镜像名
-```
 
-9. 将镜像备份出来
-```python
+# 9. 将镜像备份出来
 docker save 镜像名: Tag(版本号) -o 文件名(保存在哪个文件)
 ```
