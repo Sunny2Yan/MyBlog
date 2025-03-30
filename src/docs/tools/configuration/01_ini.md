@@ -2,6 +2,7 @@
 
 `.ini` 是一种常见但非正式的配置文件格式。
 
+## `.ini` 文件格式
 ```ini 
 ; ini文件分为各个section，每个section保存key-value
 ; 注意字符串没有引号，且等号不留空格
@@ -15,7 +16,7 @@ host=localhost
 port=8080
 ```
 
-## python 读写 `ini` 文件
+## python 读写 `.ini` 文件
 
 ```python
 import configparser
