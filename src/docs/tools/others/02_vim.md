@@ -58,6 +58,7 @@ ctrl + r  # 撤销 u 的操作，即还原撤销
 
 在用户主目录下建立个.vimrc文件并配置，root账户在/root/下建立一个.vimrc文件。
 
+::: details code
 ```
 ".vimrc
 "This is xxxx's vimrc
@@ -195,7 +196,7 @@ set guicursor+=i:blinkwait10
 " let python excution in VIM
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 ```
-
+:::
 
 ## 插件
 1. 先安装 `vundle` 插件管理器
