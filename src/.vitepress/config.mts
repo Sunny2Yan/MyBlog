@@ -46,18 +46,18 @@ export default defineConfig({
           {text: 'LLm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
           {text: 'RL', link: '/docs/notes/rl/markov_decision.md'}]},
       {text: '论文', items: [
-          {text: 'LLM', link: '/papers/llm/'},
-          {text: 'Multimodal', link: '/papers/multimodal/'}
+          {text: 'LLM', link: '/docs/notes/papers/llm/'},
+          {text: 'Multimodal', link: '/docs/notes/papers/multimodal/'}
         ]},
       {text: '工具', items: [
-          {text: 'Linux', link: '/tools/linux/'},
-          {text: 'Python', link: '/tools/python/'},
-          {text: 'C++', link: '/tools/c++/'},
-          {text: 'Rust', link: '/tools/rust/'},
-          {text: 'DataBase', link: '/tools/database/'},
-          {text: 'Docker', link: '/tools/docker/'},
-          {text: 'Configuration', link: '/tools/configuration/01_ini.md'},
-          {text: 'Others', link: '/tools/others/01_setuptools.md'}
+          {text: 'Linux', link: '/docs/notes/tools/linux/'},
+          {text: 'Python', link: '/docs/notes/tools/python/'},
+          {text: 'C++', link: '/docs/notes/tools/c++/'},
+          {text: 'Rust', link: '/docs/notes/tools/rust/'},
+          {text: 'DataBase', link: '/docs/notes/tools/database/'},
+          {text: 'Docker', link: '/docs/notes/tools/docker/'},
+          {text: 'Configuration', link: '/docs/notes/tools/configuration/01_ini.md'},
+          {text: 'Others', link: '/docs/notes/tools/others/01_setuptools.md'}
         ]},
       {text: '杂记', items: [
           {text: 'other', link: '/'}
