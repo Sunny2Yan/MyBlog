@@ -39,6 +39,5 @@ features:
 这里待定
 
 ```sh
-npm init
-npx vitepress init
+Hello World!
 ```
