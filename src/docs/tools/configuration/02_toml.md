@@ -2,6 +2,7 @@
 
 TOML (Tom's Obvious, Minimal Language) 是一种语义明显且易于阅读的最小化配置文件格式，被设计成可以无歧义地映射为哈希表。
 
+## `.toml` 文件格式
 ```toml
 # 1. 键名可以是裸露的，引号引起来的，或点分隔的。
 title = "TOML 示例"  # 值有类型，必须加引号
@@ -33,7 +34,6 @@ role = "前端"
 ```
 
 ## python 读写 `.toml` 文件
-
 ```python
 # pip install toml
 import toml
