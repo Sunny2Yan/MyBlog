@@ -41,12 +41,26 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: '家', link: '/' },
-      {text: '代码', link: '/markdown-examples'},
+      {text: '代码', link: '/'},
       { text: '笔记', items: [
-          {text: 'llm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
-          {text: 'rl', link: '/docs/notes/rl/markov_decision.md'}]},
+          {text: 'LLm', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
+          {text: 'RL', link: '/docs/notes/rl/markov_decision.md'}]},
       {text: '论文', items: [
-          {text: 'llm', link: '/'}
+          {text: 'LLM', link: '/papers/llm/'},
+          {text: 'Multimodal', link: '/papers/multimodal/'}
+        ]},
+      {text: '工具', items: [
+          {text: 'Linux', link: '/tools/linux/'},
+          {text: 'Python', link: '/tools/python/'},
+          {text: 'C++', link: '/tools/c++/'},
+          {text: 'Rust', link: '/tools/rust/'},
+          {text: 'DataBase', link: '/tools/database/'},
+          {text: 'Docker', link: '/tools/docker/'},
+          {text: 'Configuration', link: '/tool/configuration/01_ini.md'},
+          {text: 'Others', link: '/tools/others/01_setuptools.md'}
+        ]},
+      {text: '杂记', items: [
+          {text: 'other', link: '/'}
         ]}
     ],
     // 侧边栏
