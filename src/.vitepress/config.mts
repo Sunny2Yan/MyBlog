@@ -44,7 +44,7 @@ export default defineConfig({
       {text: '代码', link: '/docs/codes/'},
       { text: '笔记', items: [
           {text: 'LLM', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
-          {text: 'RL', link: '/docs/notes/rl/markov_decision.md'}]},
+          {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'}]},
       {text: '论文', items: [
           {text: 'LLM', link: '/docs/papers/llm/'},
           {text: 'Multimodal', link: '/docs/papers/multimodal/'}
