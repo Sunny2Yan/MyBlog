@@ -19,7 +19,7 @@ $$
 $$
 \begin{aligned}
 \nabla_{\theta} V^{\pi_{\theta}}(s) &= \nabla_{\theta} \left( \sum_{a \in A} \pi_{\theta}(a | s) Q^{\pi_{\theta}}(s, a) \right) \\
-&= \sum_{a \in A} \left( \nabla_{\theta} \pi_{\theta}(a | s) Q^{\pi_{\theta}}(s, a) + \pi_{\theta}(a | s) \nabla_{\theta} Q^{\pi_{\theta}}(s, a) \right \\
+&= \sum_{a \in A} \left( \nabla_{\theta} \pi_{\theta}(a | s) Q^{\pi_{\theta}}(s, a) + \pi_{\theta}(a | s) \nabla_{\theta} Q^{\pi_{\theta}}(s, a) \right) \\
 &= \sum_{a \in A} \left( \nabla_{\theta} \pi_{\theta}(a | s) Q^{\pi_{\theta}}(s, a) + \pi_{\theta}(a | s) \nabla_{\theta} (r(s, a) + \gamma \sum_{s'} p(s' | s, a) V^{\pi_{\theta}}(s')) \right) \\
 &= \sum_{a \in A} \left( \nabla_{\theta} \pi_{\theta}(a | s) Q^{\pi_{\theta}}(s, a) + \gamma \pi_{\theta}(a | s) \sum_{s'} p(s' | s, a) \nabla_{\theta} V^{\pi_{\theta}}(s') \right)
 \end{aligned}
