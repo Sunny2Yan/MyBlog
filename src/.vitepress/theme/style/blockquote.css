@@ -6,3 +6,11 @@
     background-color: var(--vp-c-gray-soft);
     border-left: 6px solid var(--vp-c-green-2);
 }
+
+
+.custom-block {
+  background-color: #8785a2;  /* 你可以选择任意颜色 */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
