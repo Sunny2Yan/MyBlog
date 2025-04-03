@@ -1,4 +1,3 @@
-// 彩虹背景动画样式
 import { watch } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import './style/rainbow.css'
