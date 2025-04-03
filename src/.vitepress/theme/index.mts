@@ -22,7 +22,6 @@ export default {
         { immediate: true },
       )
     }
-
   },
 }
 

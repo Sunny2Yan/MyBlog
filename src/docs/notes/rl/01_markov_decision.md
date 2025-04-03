@@ -49,7 +49,7 @@ $$
 因此，奖励函数的输出可以分成两个部分，一部分为即时奖励的输出，也就是奖励函数的输出 $R_t$；另一部分，等式中剩余部分 $\mathbb{E} [\gamma V(S_{t+1}) | S_t=s]$ 可以根据从状态出发的转移概率得到，于是可以写成
 （补充知识点：$\mathbb{E}[f(X) | Y=y] = \int_{-\infty}^{\infty} f(x) \cdot p(x|y) \, dx$）：
 
-::: custom-block
+::: danger Bellman equation
 $$V(s) = r(s) + \gamma \sum_{s' \in S} p(s'|s) V(s')$$
 :::
 
