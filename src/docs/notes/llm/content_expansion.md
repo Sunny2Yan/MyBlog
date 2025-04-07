@@ -44,7 +44,7 @@ $$
 $$
 
 ## 4. YaRN
-[Paper](https://arxiv.org/abs/2309.00071); [Code](/docs/codes/models/01_context_expansion.md/#yarn)
+[Paper](https://arxiv.org/abs/2309.00071); [Code](/docs/codes/models/01_context_expansion.md#yarn)
 
 用下面公式重新定义 PI：
 
