@@ -51,13 +51,11 @@ $$
 $$
 f'(x_m, m, \theta_d) = f(x_m, \frac{mL}{L'}, \theta_d)
 $$
-
 其中，$\theta_d=10000^{-2d/|D|}$ 表示频率。定义 $s = \frac{L'}{L}$，表示 scale factor，于是可以进一步重写上式：
 
 $$
 f'(x_m, m, \theta_d) = f(x_m, g(m), h(\theta_d))
 $$
-
 即：对于 PI，$g(m)=m/s; h(\theta_d)=\theta_d$。当引入新的插值时，只需要修改 $g(m)$ 和 $h(\theta_d)$ 即可。
 
 定义 $\lambda_d$ 表示 ROPE Embedding的第 d 个隐藏维度的波长，描述在第 d 维上，RoPE Embedding完成一次完整旋转（2π）所需的 token 长度。即：
@@ -65,24 +63,23 @@ $$
 $$
 \lambda_d = \frac{2\pi}{\theta_d} = 2\pi 10000^{-2d/|D|}
 $$
-
 对于那些不考虑各维度的波长的方法（如：PI），称为 blind 插值，而其他方法考虑波长的方法（如：YARN），称为 targeted 插值。
 
 ::: tip 补充知识
 对于函数 $y = A sin(Bx + C) + D$：
-振幅：A
-周期：$T = \frac{2\pi}{B}$，表示完成往复运动一次所需要的时间；
-频率：$f = \frac{1}{T}$，表示单位时间内完成周期性变化的次数；
-波长：$v=uT$，$u$ 为波速。表示波在一个振动周期内传播的距离。
+- 振幅：A
+- 周期：$T = \frac{2\pi}{B}$，表示完成往复运动一次所需要的时间；
+- 频率：$f = \frac{1}{T}$，表示单位时间内完成周期性变化的次数；
+- 波长：$v=uT$，$u$ 为波速。表示波在一个振动周期内传播的距离。
 :::
 
 ### 4.1 NTK-aware
 对于上面改写后的公式有：
+
 $$
 g(m) = m \\
 h(\theta_d) = (b \cdot s^{\frac{|D|}{|D|-2}})^{-2d/|D|}
 $$
-
 该方法在扩展非微调模型的上下文大小方面表现比 PI 更好。但有一个主要缺点：它不仅仅是做插值，还有一些维度被外推到 out-of-bound，
 因此使用 NTK-aware 进行微调产生的结果不如PI。此外，由于 out-of-bound，理论上 scale factor s 不能准确地描述真实的上下文扩展尺度。
 
