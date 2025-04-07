@@ -6,7 +6,7 @@ vim 共三种模式，命令模式（Command mode），输入模式（Insert mod
 - Insert mode：编辑文本。
 - Last line mode：执行退出、保存等命令。（q, w, qa!...）
 
-Command -(iao)-> Insert；Insert -(esc)-> Command；Command -(:)-> Last line；Last line -(enter)-> Command
+Command -(iao)-> Insert；Insert -(esc)-> Command；Command -(\:)-> Last line；Last line -(enter)-> Command
 
 ## 1. Command mode
 按 `esc` 进入命令模式
