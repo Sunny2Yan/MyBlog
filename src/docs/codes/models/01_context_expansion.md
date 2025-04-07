@@ -46,7 +46,7 @@ def _compute_linear_scaling_rope_parameters(
         config, device, seq_len, **rope_kwargs)
 
     # 最早缩放是 position_ids。但`embs = inv_freq @ position_ids`，因此对 inv_freq 缩放是等效的。
-    inv_freq /= factor  // [!code focus]
+    inv_freq /= factor  # [!code highlight]
     return inv_freq, attention_factor
 ```
 
@@ -77,7 +77,7 @@ def _compute_dynamic_ntk_parameters(
     # seq_len: default to max_position_embeddings, e.g. at init time
     seq_len = seq_len if seq_len is not None and seq_len > max_position_embeddings else max_position_embeddings
 
-    base = base * ((factor * seq_len / max_position_embeddings) - (factor - 1)) ** (dim / (dim - 2))  // [!code highlight]
+    base = base * ((factor * seq_len / max_position_embeddings) - (factor - 1)) ** (dim / (dim - 2))  # [!code highlight]
     inv_freq = 1.0 / (base ** (torch.arange(0, dim, 2, dtype=torch.int64).to(
         device=device, dtype=torch.float) / dim))
     return inv_freq, attention_factor

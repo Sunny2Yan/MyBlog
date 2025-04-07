@@ -82,7 +82,7 @@ This is a tip.
 
 8）代码高亮，可以指定某一行突出高亮
 \```python{4}  第四行高亮，或 {4-10， 15}
-// [!code highlight]  可以直接在某一行后添加此注释实现高亮
+// [!code highlight]  可以直接在某一行后添加此注释实现高亮, 注意注释方式，python用#
 // [!code focus]  同上模糊聚焦
 // [!code --] 或 // [!code ++] 实现颜色差异
 // [!code warning] 或 // [!code error] 错误和警告
