@@ -83,33 +83,11 @@ def _compute_dynamic_ntk_parameters(
     return inv_freq, attention_factor
 ```
 
-## 4. YARN
+## 4. YaRN
 ```python
 def _compute_yarn_parameters(
     config: PretrainedConfig, device: "torch.device", seq_len: Optional[int] = None, **rope_kwargs
 ) -> tuple["torch.Tensor", float]:
-    """
-    Computes the inverse frequencies with NTK scaling. Please refer to the
-    [original paper](https://arxiv.org/abs/2309.00071)
-    Args:
-        config ([`~transformers.PretrainedConfig`]):
-            The model configuration.
-        device (`torch.device`):
-            The device to use for initialization of the inverse frequencies.
-        seq_len (`int`, *optional*):
-            The current sequence length. Unused for this type of RoPE.
-        rope_kwargs (`Dict`, *optional*):
-            BC compatibility with the previous RoPE class instantiation, will be removed in v4.45.
-    Returns:
-        Tuple of (`torch.Tensor`, `float`), containing the inverse frequencies for the RoPE embeddings and the
-        post-processing scaling factor applied to the computed cos/sin.
-    """
-    # No need to keep BC with yarn, unreleased when this new pattern was created.
-    if len(rope_kwargs) > 0:
-        raise ValueError(
-            f"Unexpected arguments: `**rope_kwargs` should be unset in `_compute_yarn_parameters`, got {rope_kwargs}"
-        )
-
     base = config.rope_theta
     partial_rotary_factor = config.partial_rotary_factor if hasattr(config, "partial_rotary_factor") else 1.0
     head_dim = getattr(config, "head_dim", config.hidden_size // config.num_attention_heads)
