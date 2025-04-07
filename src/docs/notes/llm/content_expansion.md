@@ -1,8 +1,8 @@
 # Context Expansion
 
 ## 1. Position Interpolation
-
-[Paper](https://arxiv.org/pdf/2306.15595); [Code](/src/docs/codes/models/01_context_expansion.md#position-interpolation)
+#position-interpolation
+[Paper](https://arxiv.org/pdf/2306.15595); [Code](/src/docs/codes/models/01_context_expansion.md)
 
 $$
 f'(x, m)=f(x, \frac{mL}{L'})
