@@ -1,7 +1,7 @@
 # Context Expansion
 
-
 ## 1. Position Interpolation
+
 [paper_addr](https://arxiv.org/pdf/2306.15595); [Code](/src/docs/codes/models/01_context_expansion.md#Position-Interpolation)
 
 $$
