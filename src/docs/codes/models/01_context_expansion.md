@@ -77,7 +77,7 @@ def _compute_dynamic_ntk_parameters(
     # seq_len: default to max_position_embeddings, e.g. at init time
     seq_len = seq_len if seq_len is not None and seq_len > max_position_embeddings else max_position_embeddings
 
-    base = base * ((factor * seq_len / max_position_embeddings) - (factor - 1)) ** (dim / (dim - 2)) // [!code focus]
+    base = base * ((factor * seq_len / max_position_embeddings) - (factor - 1)) ** (dim / (dim - 2))  // [!code highlight]
     inv_freq = 1.0 / (base ** (torch.arange(0, dim, 2, dtype=torch.int64).to(
         device=device, dtype=torch.float) / dim))
     return inv_freq, attention_factor
