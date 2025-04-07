@@ -10,6 +10,7 @@ $$
 即将新的长度按比例压缩到原来窗口内，压缩后更加“拥挤”，通常需要微调。
 
 ## 2. Dynamic NTK
+[Code](/docs/codes/models/01_context_expansion.md#dynamic-ntk)
 
 动态NTK的核心是：高频外推、低频内插。位置 n 的旋转位置编码本质上是 $\beta$ 进制编码，即，RoPE 的构造基础就是 Sinusoidal 位置编码：
 
@@ -23,9 +24,10 @@ $$
 \frac{n}{(\beta\lambda)^{d/2−1}} = \frac{n/k}{\beta^{d/2−1}}
 $$
 
-解得 $\lambda=k^{2/(d−2)}$，code直接修改base `base = base * 8 ** (dim / (dim-2))`
+解得 $\lambda=k^{2/(d−2)}$，code直接修改base `base = base * k ** (dim / (dim-2))`
 
 ## 3. rerope
+
 按照高频外推、低频内插的思想，设定一个窗口大小w，在窗口内使用大小为1的位置间隔，在窗口外使用大小为1/k的位置间隔，即:
 
 $$
