@@ -1,7 +1,7 @@
 # Context Expansion
 
 ## 1. Position Interpolation
-[Paper](https://arxiv.org/abs/2306.15595); [Code](/docs/codes/models/01_context_expansion.md#position-interpolation)
+[Paper](https://arxiv.org/abs/2306.15595); [Code](/docs/codes/models/01_context_expansion.md##position-interpolation)
 
 语言模型通常使用固定的上下文长度进行预训练，对于 RoPE position embedding 直接外推在大于 L 的序列上表现不佳。
 本方法旨在通过少量数据微调，也能使模型在超出上下文长度的序列上表现良好。
@@ -13,7 +13,7 @@ $$
 即将新的长度按比例压缩到原来窗口内，压缩后更加“拥挤”，因此需要微调。
 
 ## 2. NTK-aware
-[Code](/docs/codes/models/01_context_expansion.md#dynamic-ntk)
+[Code](/docs/codes/models/01_context_expansion.md##dynamic-ntk)
 
 动态NTK的核心是：高频外推、低频内插。位置 n 的旋转位置编码本质上是 $\beta$ 进制编码，即，RoPE 的构造基础就是 Sinusoidal 位置编码：
 
@@ -44,7 +44,7 @@ $$
 $$
 
 ## 4. YaRN
-[Paper](https://arxiv.org/abs/2309.00071); [Code](/docs/codes/models/01_context_expansion.md#yarn)
+[Paper](https://arxiv.org/abs/2309.00071); [Code](/docs/codes/models/01_context_expansion.md##yarn)
 
 用下面公式重新定义 PI：
 
