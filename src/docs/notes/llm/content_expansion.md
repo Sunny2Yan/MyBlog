@@ -80,7 +80,7 @@ $$
 \begin{aligned}
 g(m) &= m \\
 h(\theta_d) &= b'^{-2d/|D|} \\
-where b'=b \cdot s^{\frac{|D|}{|D|-2}}
+where~b'&=b \cdot s^{\frac{|D|}{|D|-2}}
 \end{aligned}
 $$
 该方法在扩展非微调模型的上下文大小方面表现比 PI 更好。但有一个主要缺点：它不仅仅是做插值，还有一些维度被外推到 out-of-bound，
@@ -89,7 +89,7 @@ $$
 ### 4.2 NTK-by-parts
 定义 $\lambda$ 为某个周期函数的波长。在RoPE中，给定上下文长度 L，存在某些维度 d 的波长 $\lambda$ 会大于预训练中所见的最大上下文长度（$\lambda > L$）。
 那它们的周期性变化没完整展开，就意味着绝对位置信息可以保留；相反，当波长很短时（周期性变化太快），模型只能获取相对位置的信息。此时，
-对 RoPE 的所有维度做缩放（乘 scale factor s 或更换 base $b′$），所有 token 在旋转后的角度会变小，那么两个向量的点积会变大（如：
+对 RoPE 的所有维度做缩放（乘 scale factor s 或更换 base b′），所有 token 在旋转后的角度会变小，那么两个向量的点积会变大（如：
 token1与token2夹角10度，token1与token10夹角30度，都缩放10倍后，cos1与cos3基本相同，没有区分度），因此会让 token 间的相对位置变得不明显，
 即破坏大模型的相对位置信息。
 
@@ -98,8 +98,7 @@ token1与token2夹角10度，token1与token10夹角30度，都缩放10倍后，c
 - 波长 $\lambda$ 等于或大于上下文长度 L，做插值并避免任何外推（但与 NTK-aware 不同）；
 - 中间的部分维度使用 NTK-aware 插值。
 
-为此，在原始上下文长度 L 和波长 $\lambda$ 之间引入比率 $r = \frac{L}{\lambda}$。在第 d 个 hidden state 中，
-比率 r 通过以下方式依赖于 d:
+为此，在原始上下文长度 L 和波长 $\lambda$ 之间引入比率 $r = \frac{L}{\lambda}$。在第 d 个 hidden state 中:
 $$
 r(d) = \frac{L}{\lambda_d} = \frac{L}{2\pi b'^{\frac{2d}{|D|}}}
 $$
