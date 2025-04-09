@@ -111,8 +111,8 @@ $$
 $$
 \gamma(r) = 
 \begin{cases}
-0, & r < \alpha
-1, & r > \beta
+0, & r < \alpha \\
+1, & r > \beta \\
 \frac{r - \alpha}{\beta - \alpha}, & otherwise
 \end{cases}
 $$
@@ -120,8 +120,8 @@ $$
 这种方式叫做“NTK-by-parts”（分步NTK）。即：
 $$
 \begin{aligned}
-g(m) = m \\
-h(\theta_d) = (1 - \gamma(r(d))) \frac{\theta_d}{s} + \gamma(r(d)) \theta_d
+g(m) &= m \\
+h(\theta_d) &= (1 - \gamma(r(d))) \frac{\theta_d}{s} + \gamma(r(d)) \theta_d
 \end{aligned}
 $$
 
