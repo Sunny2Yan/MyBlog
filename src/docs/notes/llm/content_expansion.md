@@ -103,7 +103,32 @@ $$
 r(d) = \frac{L}{\lambda_d} = \frac{L}{2\pi b'^{\frac{2d}{|D|}}}
 $$
 
+为了定义上述插值策略的边界，引入了两个额外的参数 $\alpha, \beta$。即，对所有 hidden 得维度 d： 
+- 若 $r(d) < \alpha$（低频），通过 scale s 线性插值（如： PI）；
+- 若 $r(d) > \beta$（高频）， 完全不插值；
+- 其他情况，使用 NTK-aware 插值方法。
+
+$$
+\gamma(r) = 
+\begin{cases}
+0, & r < \alpha
+1, & r > \beta
+\frac{r - \alpha}{\beta - \alpha}, & otherwise
+\end{cases}
+$$
+
+这种方式叫做“NTK-by-parts”（分步NTK）。即：
+$$
+\begin{aligned}
+g(m) = m \\
+h(\theta_d) = (1 - \gamma(r(d))) \frac{\theta_d}{s} + \gamma(r(d)) \theta_d
+\end{aligned}
+$$
+
+其中，$\alpha, \gamma$ 由实验获取，一般 llama 模型中 $\alpha=1, \beta=32$
+
 ### 4.3 Dynamic NTK
+
 
 ### 4.4 YaRN
 
