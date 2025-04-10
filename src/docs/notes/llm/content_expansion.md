@@ -129,8 +129,25 @@ $$
 
 ### 4.3 Dynamic NTK
 
+模型在前向推理过程中，序列长度从1逐步增加至 max_seq_len，其中序列长度在每步后增加1都有两种插值方式：
+- 按 scale factor $s = \frac{L′}{L}$ 来插值：当序列长度大于 L' 时，模型在序列长度小于 L 时会退化；
+- 按 scale factor $s = \max(1, \frac{L′}{L})$ 来插值：对于短序列不插值，对于长序列渐进插值，更温和地过渡，避免突变和性能崩溃。
+
+在自回归生成任务中，每次前向传播时只计算最新的 token，其它 token 的 key-value 向量会被缓存（kv-caching）。
+有些实现方式会 cache RoPE 后的结果，如果使用 Dynamic Scaling 插值，就会出现错误，应该在位置编码前做 kv-caching。
+
+原因：序列变长后，缩放因子会发生变化，新编码的query。
+
+举例：当生成到第 3000 个 token 时，$s = \frac{3000}{2048} = 1.46$，这时缓存旧 token 的 kv 是被 $s\neq1$ 旋转过，
+这与现在的 RoPE(s=1.46) 的 query 对不上。
 
 ### 4.4 YaRN
+通过观察发现：在注意力机制中引入温度能够降低困惑度，即，将计算修改为如下：
+$$
+softmax(\frac{q_M^Tk_n}{t\sqrt{|D|}})
+$$
+
+
 
 ## 5. LongROPE
 
