@@ -144,10 +144,13 @@ $$
 ### 4.4 YaRN
 通过观察发现：在注意力机制中引入温度能够降低困惑度，即，将计算修改为如下：
 $$
-softmax(\frac{q_M^Tk_n}{t\sqrt{|D|}})
+softmax(\frac{q_m^Tk_n}{t\sqrt{|D|}})
 $$
 
-
+即，将 $q_m$ 和 $k_n$ 缩放一个常数因子 $\sqrt{1/t}$。对于 LLaMA 和 Llama 2 模型有：
+$$
+\sqrt{\frac{1}{t}} = 0.1\ln(s) + 1
+$$
 
 ## 5. LongROPE
 

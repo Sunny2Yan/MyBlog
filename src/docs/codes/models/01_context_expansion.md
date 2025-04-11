@@ -118,7 +118,6 @@ def _compute_yarn_parameters(
         else:
             attention_factor = get_mscale(factor)
 
-    # Optional config options
     # beta_fast/beta_slow: as suggested in the paper, default to 32/1 (correspondingly)
     beta_fast = config.rope_scaling.get("beta_fast") or 32
     beta_slow = config.rope_scaling.get("beta_slow") or 1
