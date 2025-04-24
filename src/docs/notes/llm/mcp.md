@@ -37,39 +37,39 @@ Server
 - 带有 SSE 的 HTTP 传输：server 到 client 使用 Server-Sent Events，client 到 server 使用 HTTP POST 发送消息。
 
 主要消息类型：
-::: code-group
+::: code-group 
 
-\```python [Requests]
+```python [Requests]
 # 期望得到对方的响应
 interface Request {
   method: string;
   params?: { ... };
 }
-\```
+```
 
-\```python [Results]
+```python [Results]
 # 对请求的成功响应
 interface Result {
   [key: string]: unknown;
 }
-\```
+```
 
-\```python [Errors]
+```python [Errors]
 # 表明请求失败
 interface Error {
   code: number;
   message: string;
   data?: unknown;
 }
-\```
+```
 
-\```python [Notifications]
+```python [Notifications]
 # 单向消息，不期望得到响应
 interface Notification {
   method: string;
   params?: { ... };
 }
-\```
+```
 
 :::
 
