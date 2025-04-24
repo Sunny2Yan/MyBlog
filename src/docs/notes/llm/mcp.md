@@ -36,7 +36,8 @@ Server
 - Stdio 传输: 标准输入/输出通信。适合本地流程；
 - 带有 SSE 的 HTTP 传输：server 到 client 使用 Server-Sent Events，client 到 server 使用 HTTP POST 发送消息。
 
-::: code-group 主要消息类型
+主要消息类型：
+::: code-group
 
 \```python [Requests]
 # 期望得到对方的响应
