@@ -42,8 +42,8 @@ export default defineConfig({
     nav: [
       { text: '家', link: '/' },
       {text: '代码', items: [
-          {text: 'LeetCode', link: '/docs/codes/leetcode/first.md'}, // llm下的第一个文章
-          {text: 'Model', link: '/docs/codes/models/llama4.md'}]},
+          {text: 'LeetCode', link: '/docs/codes/leetcode/first.md'},
+          {text: 'Model', link: '/docs/codes/models/llama_4.md'}]},
       { text: '笔记', items: [
           {text: 'LLM', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
           {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'}]},
