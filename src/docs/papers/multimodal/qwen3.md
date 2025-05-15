@@ -62,4 +62,4 @@ Long Context Stage: 收集高质量的 long context 语料来扩展上下文长�
 
 ## Post-training
 
-![post_train](/imgs/notes/papers/qwen3/post_compare.png)
+![post_train](/imgs/notes/papers/qwen3/post_train.png)
