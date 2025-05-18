@@ -176,7 +176,7 @@ Thinking mode fusion 的另一个优势：模型学会以 `thinking` 和 `no-thi
 
 ### 4.2 On-Policy Distillation 的效果
 
-![on_policy_distillation](/imgs/notes/papers/qwen3/on_policy_distillation.png)
+![on_policy_distillation](/imgs/notes/papers/qwen3/on_policy_distill.png)
 
 ### 4.3 Thinking Mode Fusion 和 General RL 的影响
 
