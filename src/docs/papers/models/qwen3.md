@@ -1,4 +1,6 @@
 # Qwen3 Technical Report
+<a href="https://arxiv.org/pdf/2505.09388" target="_blank" rel="noreferrer">Paper Addr</a>
+
 
 本次引入模型系列为：
 - Dense model: `Qwen3-0.6B`、`Qwen3-1.7B`、`Qwen3-4B`、`Qwen3-8B`、`Qwen3-14B`、`Qwen3-32B`；
