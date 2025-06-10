@@ -42,7 +42,7 @@ export default defineConfig({
     nav: [
       { text: '家', link: '/' },
       {text: '代码', items: [
-          {text: 'LeetCode', link: '/docs/codes/leetcode/first.md'},
+          {text: 'LeetCode', link: '/docs/codes/leetcode/01_sort.md'},
           {text: 'Model', link: '/docs/codes/models/llama_4.md'}]},
       { text: '笔记', items: [
           {text: 'LLM', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
