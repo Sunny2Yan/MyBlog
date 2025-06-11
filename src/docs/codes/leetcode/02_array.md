@@ -3,9 +3,10 @@
 ## Find Array
 
 1. 查找有序列表中目标数字重复次数
+
 （剑指offer 53）
-思路：二分法，定义一个函数 $f$ 来找到第一个大于target的索引，然后根据 $f(target) - f(target - 1)$ 即可。 
-时O(logn), 空O(1)
+- 思路：二分法，定义一个函数 $f$ 来找到第一个大于target的索引，然后根据 $f(target) - f(target - 1)$ 即可。 
+- 时O(logn), 空O(1)
 
 ```python
 def find_number(nums: list[int], target: int) -> int:
@@ -24,9 +25,10 @@ def find_number(nums: list[int], target: int) -> int:
 ```
 
 2. 查找数组中重复的数字
+
 （剑指offer 03）
-思路：建立集合存储数字，遍历数组，集合中不存在就加入，否则输出。
-时O(n)，空O(1)
+- 思路：建立集合存储数字，遍历数组，集合中不存在就加入，否则输出。
+- 时O(n)，空O(1)
 
 ```python
 def find_renumber(nums: list[int]) -> Optional[int]:
@@ -42,9 +44,10 @@ def find_renumber(nums: list[int]) -> Optional[int]:
 ```
 
 3. 查找 0~n-1 中缺失的数字
+
 （剑指offer 53）
-思路：二分法，若中间数字的值等于索引，则右侧缺失，否则左侧缺失，由于每次先判断 left，最终只需返回left即可。也可以前n项和直接算。
-时O(logn), 空O(1)
+- 思路：二分法，若中间数字的值等于索引，则右侧缺失，否则左侧缺失，由于每次先判断 left，最终只需返回left即可。也可以前n项和直接算。
+- 时O(logn), 空O(1)
 
 ```python
 def find_loss_number(nums: list[int]) -> int:
@@ -60,9 +63,10 @@ def find_loss_number(nums: list[int]) -> int:
 ```
 
 4. 递增矩阵查找元素
+
 （剑指offer 04）矩阵中行递增，列递增，判断矩阵中是否含target值
-思路：从左下角查起，如果第一个元素小于target，查找这一行的右侧，否则查找上一行。
-时O(m + n)，空O(1)
+- 思路：从左下角查起，如果第一个元素小于target，查找这一行的右侧，否则查找上一行。
+- 时O(m + n)，空O(1)
 
 ```python
 def find_matrix(matrix: list[list[int]], target: int) -> bool:
@@ -83,9 +87,10 @@ def find_matrix(matrix: list[list[int]], target: int) -> bool:
 ## Transpose Array
 
 1. 旋转矩阵（转置）
+
 （leetcode 867）定义一个相同大小的矩阵，然后进行值替换。
-思路：
-时O(nm), 空O(mn)
+- 思路：
+- 时O(nm), 空O(mn)
 
 ```python
 def transpose_matrix(matrix: list[list[int]]) -> list[list[int]]:
@@ -101,9 +106,10 @@ def transpose_matrix(matrix: list[list[int]]) -> list[list[int]]:
 ```
 
 2. 顺时针打印矩阵
+
 (剑指offer 29) 
-思路：如果 $left <= right or up <= down$ 顺时针打印，先打印顶横和右竖，再打印下横和左竖，但$left \neq right and up\neq down$。
-O(n^2)；空O(n^2)
+- 思路：如果 $left <= right or up <= down$ 顺时针打印，先打印顶横和右竖，再打印下横和左竖，但$left \neq right and up\neq down$。
+- O(n^2)；空O(n^2)
 
 ```python
 def print_matrix(matrix: list[list[int]]) -> list:
@@ -145,9 +151,10 @@ def multiply_matrix(matrix_1: list[list[int]], matrix_2: list[list[int]]) -> lis
 ```
 
 2. 合并区间
+
 (leetcode 56) intervals包含若干个区间的数组，合并所有重叠的区间，返回一个不重叠的区间数组。
-思路：先将数组按第一维度排序，再比较前一个区间的end与下一个区间的start的大小
-时O(nlogn); 空O(1)
+- 思路：先将数组按第一维度排序，再比较前一个区间的end与下一个区间的start的大小
+- 时O(nlogn); 空O(1)
 
 ```python
 def merge_arr(intervals: list[list[int]]) -> list[list[int]]:
@@ -165,9 +172,11 @@ def merge_arr(intervals: list[list[int]]) -> list[list[int]]:
 ```
 
 3. 三数之和
+
 (leetcode 15) 给定数组nums，返回数组中三个不同的元素使其和为0。
-思路：先排序为应用双指针做准备，再遍历确定一个元素，剩余元素应用双指针确定。
-时O(n^2); 空O(1)
+- 思路：先排序为应用双指针做准备，再遍历确定一个元素，剩余元素应用双指针确定。
+- 时O(n^2); 空O(1)
+
 ```python
 def spiral_order(nums: list[int]) -> list[list[int]]:
     """eg: """
@@ -199,9 +208,10 @@ def spiral_order(nums: list[int]) -> list[list[int]]:
 ```
 
 4. 杨辉三角
+
 (leetcode 118) 给定非负整数num_rows，生成杨辉三角的前num_rows行.
-思路：可以一行一行地计算杨辉三角，每当计算出第i行的值，就可以求出第i+1行的值。
-时O(n^2); 空O(n!)
+- 思路：可以一行一行地计算杨辉三角，每当计算出第i行的值，就可以求出第i+1行的值。
+- 时O(n^2); 空O(n!)
 
 ```python
 def generate(num_rows: int) -> list[list[int]]:
