@@ -12,9 +12,10 @@ class ListNode:
 ## 链表排序
 
 1. 排序链表
+
 (leetcode 148) 按升序排列链表head并返回排序后的链表
-思路：归并法排序，采用快慢指针来找链表中点位置，slow.next=None为链表前部分，slow.next为链表后部分
-时O(nlogn); 空O(logn)
+- 思路：归并法排序，采用快慢指针来找链表中点位置，slow.next=None为链表前部分，slow.next为链表后部分
+- 时O(nlogn); 空O(logn)
 
 ```python
 def sort_list(head: ListNode) -> ListNode:
@@ -48,9 +49,10 @@ def __merge(left_list, right_list):
 ```
 
 2. 奇偶链表重排
+
 (leetcode 328) 将链表的奇数位节点和偶数位节点分别放在一起，如[1,2,3,4,5]->[1,3,5,2,4]
-思路：新建奇偶指针和存放偶数位置的链表，原链表存放奇数位置，最后再组合
-时O(n); 空O(1)
+- 思路：新建奇偶指针和存放偶数位置的链表，原链表存放奇数位置，最后再组合
+- 时O(n); 空O(1)
 
 ```python
 def odd_even_list(head: ListNode) -> ListNode:
@@ -72,8 +74,10 @@ def odd_even_list(head: ListNode) -> ListNode:
 ```
 
 3. 反转链表（全部反转）
+
 (leetcode 206) 反转链表，并返回反转后的链表.
-时O(n); 空O(1)
+- 思路：
+- 时O(n); 空O(1)
 
 ```python
 def reverse_list(self, head: Optional[ListNode]) -> Optional[ListNode]:
@@ -90,8 +94,10 @@ def reverse_list(self, head: Optional[ListNode]) -> Optional[ListNode]:
 ```
 
 4. 反转链表（区间反转）
+
 (leetcode 92) 反转从位置left到位置right的链表节点。
-时O(n); 空O(1)
+- 思路：
+- 时O(n); 空O(1)
 
 ```python
 def reverse_between(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
@@ -116,8 +122,10 @@ def reverse_between(head: Optional[ListNode], left: int, right: int) -> Optional
 ```
 
 5. 反转链表（分组反转）
+
 (leetcode 25)
-时O(n); 空O(1)
+- 思路
+- 时O(n); 空O(1)
 
 ```python
 def reverse_group(head: ListNode, k: int) -> ListNode:
@@ -156,9 +164,10 @@ def __reverse(head: ListNode, tail: ListNode):
 ```
 
 6. 回文链表
+
 (leetcode 234) 判断链表是否为回文链表，如果是返回true，否则返回false。
-思路：将链表的后一半反转，并同前一半逐个节点比较值是否相等。
-时O(n); 空O(1)
+- 思路：将链表的后一半反转，并同前一半逐个节点比较值是否相等。
+- 时O(n); 空O(1)
 
 ```python
 def is_palindrome(head: Optional[ListNode]) -> bool:
@@ -183,8 +192,10 @@ def is_palindrome(head: Optional[ListNode]) -> bool:
 ## 合并链表
 
 1. 合并两个排序链表
+
 (leetcode 21) 将两个升序链表合并为一个新的升序链表并返回.
-时O(n+m); 空O(1)
+- 思路：
+- 时O(n+m); 空O(1)
 
 ```python
 def merge_2_lists(head1: ListNode, head2: ListNode) -> ListNode:
@@ -209,8 +220,10 @@ def merge_2_lists(head1: ListNode, head2: ListNode) -> ListNode:
 ```
 
 2. 合并K个升序链表
+
 (leetcode 23) 将所有链表合并到一个升序链表中，返回合并后的链表
-时O(nlogn); 空O(logn)
+- 思路：
+- 时O(nlogn); 空O(logn)
 
 ```python
 def merge_k_lists(lists: list[ListNode]) -> ListNode:
@@ -231,8 +244,10 @@ def __divide_merge(lists: list[ListNode], left: int, right: int):
 ## 删除链表
 
 1. 移除链表元素
+
 (leetcode 203) 删除链表中所有满足Node.val==val的节点.
-时O(n); 空O(1)
+- 思路：
+- 时O(n); 空O(1)
 
 ```python
 def delete_node(head: ListNode, val: int) -> ListNode:
@@ -249,9 +264,10 @@ def delete_node(head: ListNode, val: int) -> ListNode:
 ```
 
 2. 删除链表的倒数第n个节点
+
 (leetcode 19) 删除链表的倒数第 n 个结点
-思路：双指针，快指针遍历完后，慢指针的下一个是倒数第n个节点。
-时O(n); 空O(1)
+- 思路：双指针，快指针遍历完后，慢指针的下一个是倒数第n个节点。
+- 时O(n); 空O(1)
 
 ```python
 def remove_nth_from_end(head: ListNode, n: int) -> Optional[ListNode]:
@@ -272,7 +288,8 @@ def remove_nth_from_end(head: ListNode, n: int) -> Optional[ListNode]:
 
 3. 删除有序链表中的重复元素(保留一个)
 (leetcode 83) 删除所有重复的元素，使每个元素只出现一次
-时O(n); 空O(1)
+- 思路：
+- 时O(n); 空O(1)
 
 ```python
 def delete_duplicates_1(head: ListNode) -> Optional[ListNode]:
@@ -289,8 +306,10 @@ def delete_duplicates_1(head: ListNode) -> Optional[ListNode]:
 ```
 
 4. 删除有序链表中的重复元素(不保留)
+
 (leetcode 82) 已排序的链表的头head， 删除其所有重复数字的节点，只留下不同的数字。
-时O(n); 空O(1)
+- 思路：
+- 时O(n); 空O(1)
 
 ```python
 def delete_duplicates_2(head: ListNode) -> Optional[ListNode]:
@@ -314,9 +333,10 @@ def delete_duplicates_2(head: ListNode) -> Optional[ListNode]:
 ## 环形链表
 
 1. 两链表的第一个公共节点
+
 (leetcode 160) 返回两个单链表相交的起始节点，如果不存在相交节点，返回null
-思路：拼接两单链表，相同位置值相同的节点为公共节点。[12678,34678]->[1267834678, 3467812678]
-时O(n+m); 空O(1)
+- 思路：拼接两单链表，相同位置值相同的节点为公共节点。[12678,34678]->[1267834678, 3467812678]
+- 时O(n+m); 空O(1)
 
 ```python
 def find_first_common_node(head1: ListNode, head2: ListNode) -> Optional[ListNode]:
@@ -333,9 +353,10 @@ def find_first_common_node(head1: ListNode, head2: ListNode) -> Optional[ListNod
 ```
 
 2. 环形链表 I
+
 (leetcode 141) 判断链表中是否有环，如果存在环，返回true，否则返回false。
-思路：采用快慢指针，快指针走两步，慢指针走一步，如果存在环形，则快慢指针必相遇，否则不相遇。
-时O(n); 空O(1)
+- 思路：采用快慢指针，快指针走两步，慢指针走一步，如果存在环形，则快慢指针必相遇，否则不相遇。
+- 时O(n); 空O(1)
 
 ```python
 def has_cycle(head: ListNode) -> bool:
@@ -350,11 +371,12 @@ def has_cycle(head: ListNode) -> bool:
 ```
 
 3. 环形链表 II
+
 (leetcode 142) 返回链表开始入环的第一个节点。如果链表无环，则返回null.
-思路：设fast在环中走了n圈，slow在环中走了m圈相遇。进入环之前的距离为x，环入口到相遇点的距离为y，相遇点到环入口的距离为z。则快指针一共走了x+n(y+z)+y步，慢指针一共走了
+- 思路：设fast在环中走了n圈，slow在环中走了m圈相遇。进入环之前的距离为x，环入口到相遇点的距离为y，相遇点到环入口的距离为z。则快指针一共走了x+n(y+z)+y步，慢指针一共走了
 x+m(y+z)+y，此时快指针走的倍数是慢指针的两倍，则x+n(y+z)+y=2(x+m(y+z)+y)，这时x+y=(n-2m)(y+z)，因为环的大小是y+z，说明从链表头经过环入口到达相遇地方经过的距离等于
 环的大小整数倍。x=(2m-n-1)(y+z)+z，从而从起点和相遇点出发的指针必相遇再入口节点。
-时O(n); 空O(1)
+- 时O(n); 空O(1)
 
 ```python
 def entry_node_of_loop(head: Optional[ListNode]) -> Optional[ListNode]:
@@ -387,9 +409,10 @@ def __has_loop(head: Optional[ListNode]) -> Optional[ListNode]:
 ## 链表运算
 
 1. 两数相加 I（链表的倒序相加）
+
 (leetcode 2) 两个非空链表表示两个非负的整数，其每位数字都按照逆序存储。请你将两个数相加，并返回一个新的链表。
-思路：创建新链表存储结果，定义flag存储进位数，然后s=l1.val+l2.val+flag
-时O(n); 空O(1)
+- 思路：创建新链表存储结果，定义flag存储进位数，然后s=l1.val+l2.val+flag
+- 时O(n); 空O(1)
 
 ```python
 def add_two_numbers_1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
@@ -412,9 +435,10 @@ def add_two_numbers_1(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optiona
 ```
 
 2. 两数相加 II（正序相加）
+
 (leetcode 445) 向左进位：937+63=1000
-思路：将链表逆序在相加，再对新链表逆序即可。
-时O(n); 空O(1)
+- 思路：将链表逆序在相加，再对新链表逆序即可。
+- 时O(n); 空O(1)
 
 ```python
 def add_two_numbers_2(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
