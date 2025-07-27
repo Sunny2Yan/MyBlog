@@ -1,6 +1,6 @@
 # Attention
 
-![](/imgs/llm/flash_att/f_a_1.png)
+![](/imgs/notes/llm/attention/f_a_1.png)
 
 ## 1. Standard Attention 
 #### Forward
@@ -13,14 +13,14 @@ O &= PV \in \mathbb{R}^{N \times d} \\
 \end{align}
 $$
 
-![](/imgs/llm/flash_att/f_a_2.png)
+![](/imgs/notes/llm/attention/f_a_2.png)
 
 缺点：由于 SRAM 空间较小，这样直接大量的读写导致 Attention 运算速度较慢，而且会有内存碎片化问题。
 
 #### Backward
 给定输入序列 $Q, K, V \in \mathbb{R}^{N \times d}$，输出 $O \in \mathbb{R}^{N \times d}$，输出的梯度 $dO$，来计算输入的梯度 $dQ, dK, dV \in \mathbb{r}^{N \times B}$：
 
-![](/imgs/llm/flash_att/f_a_3.png)
+![](/imgs/notes/llm/attention/f_a_3.png)
 
 ## 2. Flash Attention V1
 
@@ -52,12 +52,12 @@ $$
 注意：减 $m(x)$，是为了数值稳定，结果保持不变
 
 ### 前向算法：
-![](/imgs/llm/flash_att/f_a_4.png)
+![](/imgs/notes/llm/attention/f_a_4.png)
 注意：$B_r$ 中的 $\min()$ 是为了防止 $B_r \times B_c > M/4$。矩阵分割只按行分割，列数保持不变。
 
 ### 后向算法：
 
-![](/imgs/llm/flash_att/f_a_5.png)
+![](/imgs/notes/llm/attention/f_a_5.png)
 
 
 ## 3. Flash Attention V2
