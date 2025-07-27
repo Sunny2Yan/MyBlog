@@ -57,8 +57,6 @@ $$
 
 ### 后向算法：
 
-![](/imgs/notes/llm/attention/f_a_5.png)
-
 
 ## 3. Flash Attention V2
 FlashAttention 仍不如优化的矩阵乘法 (GEMM) 操作快，仅达到理论最大 FLOP/s 的 25-40%。导致效率低下是由于不同线程块和 GPU 上的扭曲之间的次优工作分区，导致低占用或不必要的共享内存读取/写入。
