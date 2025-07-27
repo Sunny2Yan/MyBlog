@@ -3,7 +3,7 @@
 ## 1. 二分类激活函数
 ### 1.1 Sigmoid (LR)
 $$
-\mathrm{Sigmig}(x) = \frac{1}{1+e^{-x}}
+\mathrm{Sigmoid}(x) = \frac{1}{1+e^{-x}}
 $$
 
 Sigmoid极容易导致梯度消失问题，且计算比较费时。
