@@ -158,8 +158,10 @@ class LayerNorm(nn.Module):
 与LayerNorm的区别：避免了计算均值和方差，仅计算均方根。
 
 $$
-\mathrm{RSM}(x) = \sqrt{\frac{1}{n} \sum_{i=1}^{n} x_i^2} \\
-\mathrm{RSMNorm}(x) = w \cdot \frac{x}{\mathrm{RSM(x)} + \epsilon}
+\begin{aligned}
+\mathrm{RSM}(x) &= \sqrt{\frac{1}{n} \sum_{i=1}^{n} x_i^2} \\
+\mathrm{RSMNorm}(x) &= w \cdot \frac{x}{\mathrm{RSM(x)} + \epsilon}
+\end{aligned}
 $$
 
 ```python
