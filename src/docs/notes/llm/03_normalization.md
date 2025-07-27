@@ -43,8 +43,8 @@ $$
 在训练模型时，保存每一组 batch 的每一个特征在每一层的 $\mu_{batch}$、$\sigma_{batch}^2$，就可以得出测试数据均值和方差的无偏估计：
 $$
 \begin{aligned}
-\mu_{test} &= \mathbb{\mu_{batch}} \\
-\sigma_{test}^2 &= \frac{B}{B-1} \mathbb{\sigma_{batch}^2} \\
+\mu_{test} &= \mu_{batch} \\
+\sigma_{test}^2 &= \frac{B}{B-1} \sigma_{batch}^2 \\
 BN(X_{test}) &= \gamma \frac{X_test - \mu_{test}}{\sigma_{test}^2 + \epsilon} + \beta
 \end{aligned}
 $$
