@@ -6,11 +6,11 @@
 #### Forward
 给定输入序列 $Q, K, V \in \mathbb{R}^{N \times d}$，其中 $𝑁$是序列长度、$𝑑$ 是 head dimension，通过下面公式计算 attention 输出 $O \in \mathbb{R}^{N \times d}$：
 $$
-\begin{align}
+\begin{aligned}
 S &= QK^{T} \in \mathbb{R}^{N \times N} \\
 P &= softmax(S) \mathbb{R}^{N \times N} \\
 O &= PV \in \mathbb{R}^{N \times d} \\
-\end{align}
+\end{aligned}
 $$
 
 ![](/imgs/notes/llm/attention/f_a_2.png)

@@ -45,7 +45,7 @@ $$
 \begin{aligned}
 \mu_{test} &= \mu_{batch} \\
 \sigma_{test}^2 &= \frac{B}{B-1} \sigma_{batch}^2 \\
-BN(X_{test}) &= \gamma \frac{X_test - \mu_{test}}{\sigma_{test}^2 + \epsilon} + \beta
+BN(X_{test}) &= \gamma \frac{X_{test} - \mu_{test}}{\sigma_{test}^2 + \epsilon} + \beta
 \end{aligned}
 $$
 此方法需要保存训练过程中，每一层、每一个、每一组的 $(\mu_{batch},\sigma_{batch}^2)$。因此会消耗大量存储空间。
@@ -201,3 +201,66 @@ $$
 
 ## 5. Norm 的位置选择
 
+- Post-Norm：Transformer 原始结构中使用，位于残差连接之后，在深层网络容易梯度消失
+    ```
+    x = LayerNorm(x + Sublayer(x))
+    ```
+- Pre-Norm：位于 Attention 和 FFN 之前，有助于提升训练稳定性，防止梯度消失，但效果没有 post-norm 好。因此常在深层网络中与 post-norm 共用。
+    ```
+    x = x + Sublayer(LayerNorm(x))
+    ```
+
+::: tip
+梯度消失的本质:
+
+梯度消失的根本原因是在反向传播（backpropagation）时的链式法则，即，梯度的计算涉及多层网络的链式乘积。
+对于一个 L 层深度网络，当计算最底层的梯度时，它需要通过每一层的雅可比矩阵（Jacobian Matrix）进行连乘：
+$$
+\nabla_{W_1} L = \prod_{l=1}^{L-1} \frac{\partial L}{\partial h_L} \cdot \frac{\partial h_{l+1}}{\partial h_{l}}
+$$
+在这个过程中，如果每一层的雅可比矩阵的**谱范数（即最大的特征值）**小于 1，那么在反向传播过程中，梯度会不断缩小，
+导致浅层的梯度信号趋近于零，最终使得浅层的参数几乎不更新，这就是所谓的梯度消失问题。
+
+残差链接避免梯度消失：
+
+残差连接（Residual Connection）通过引入恒等映射来解决梯度消失问题。具体为：
+$$
+h_{l+1} = h_l + F_l(h_l)
+$$
+通过这样的方式，即使 $F_l(h_l)$ 的梯度消失，恒等映射 $I$ 仍然能够保证有效的梯度流。如下，每一项的梯度都不会小于 $I$：
+$$
+\frac{\partial h_{l+1}}{\partial h_l} = I + \frac{\partial F_l}{\partial h_l}
+$$
+:::
+
+对于 Post-Norm：
+$$
+h_{l+1} = \mathrm{LayerNorm}(h_l + F_l(h_l))
+$$
+在方向传播时计算链式梯度：
+$$
+\begin{aligned}
+\nabla_{W_1} L &= \prod_{l=1}^{L-1} \frac{\partial L}{\partial h_L} \cdot \frac{\partial h_{l+1}}{\partial h_l} \\
+\frac{\partial h_{l+1}}{\partial h_l} &= \frac{\partial \mathrm{LN}(h_l + F_l(h_l))}{\partial (h_l + F_l(h_l))} \cdot \frac{\partial (h_l + F_l(h_l))}{\partial h_l}
+\end{aligned}
+$$
+
+对于 LayerNorm 的导数：
+$$
+\hat{x}_i = \frac{x_i - \mu}{\sigma}, \quad \mu = \frac{1}{d} \sum_{i=1}^d x_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^d (x_i - \mu)^2
+$$
+这里的 $x_i = x_{i-1} + F(x_{i-1})$，下面对 $\hat{x_i}$ 求导:
+$$
+\frac{\partial \hat{z}_i}{\partial z_j} = \frac{1}{\sigma} \left( \delta_{ij} - \frac{1}{d} - \frac{(z_i - \mu)(z_j - \mu)}{d \sigma^2} \right)
+$$
+因此，可以得到：
+$$
+\frac{\partial x_{l+1}}{\partial x_l} = \frac{1}{\sigma} \left( \delta_{ij} - \frac{1}{d} - \frac{(z_i - \mu)(z_j - \mu)}{d \sigma^2} \right) \cdot \left( I + \frac{\partial F(x_l)}{\partial x_l} \right)
+$$
+在梯度传播过程中每一层的梯度都会被缩放或改变，因此会造成梯度消失。
+
+
+对与 Pre-Norm:
+$$
+x_{l+1} = x_l + F(\mathrm{LayerNorm}(x_l)))
+$$
