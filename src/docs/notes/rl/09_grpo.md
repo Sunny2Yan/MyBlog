@@ -68,6 +68,6 @@ $$
 
 ::: tip
 1. 在训练中，loos 可能为 0，但不代表 gradient 为 0，因此更关注 reward；
-2. GRPO 中的奖励函数是基于规则奖励，如：Accurate、format等；
+2. GRPO 中的奖励函数是基于规则奖励，如：Accuracy、format等；
 3. GRPO解决的是模型不稳定，让模型每次都能输出最好的那一个 completion，如果模型很差则无法进行GRPO训练。
 :::
