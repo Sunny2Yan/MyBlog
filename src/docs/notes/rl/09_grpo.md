@@ -22,7 +22,7 @@ $$
 
 其中，$r_\varphi$ 是奖励模型，$\pi_{ref}$ 是被SFT初始化的推理模型。
 
-![](/imgs/notes/llm/attention/ppo_vs_grpo.png)
+![](/imgs/notes/rl/grpo/ppo_vs_grpo.png)
 
 在LLM应用中，奖励模型通常只给最终的response 分配一个奖励分数，这就使得训练每个 token 都准确的价值函数变得困难（期望价值函数预测从当前token开始到序列结束的预期累积奖励）。
 为了解决这一问题，提出了 GRPO 算法。
@@ -60,7 +60,11 @@ $$
 \end{aligned}
 $$
 
-![](/imgs/notes/llm/attention/process.png)
+![](/imgs/notes/rl/grpo/process.png)
+
+算法伪代码：
+![](/imgs/notes/rl/grpo/grpo.png)
+
 
 ::: tip
 1. 在训练中，loos 可能为 0，但不代表 gradient 为 0，因此更关注 reward；
