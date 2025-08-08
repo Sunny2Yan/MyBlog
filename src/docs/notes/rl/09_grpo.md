@@ -36,7 +36,7 @@ $$
    从旧的策略模型 $\pi_{\theta_{old}}$ 中采样一组输出 $\{o_1, o_2, \dots, o_G\}$，其中 $G$ 是 Group 的大小；
 2. computing the advantage
 
-   对组内 $G$ 个输出 $o_i$，计算每一个 reward function 下的奖励 $r_\phi$，并按优势函数 $\hat{A}_{i,t}= \bar{r}_i =\frac{r_i-\mathbb{mean}(r)}{\mathbb{std}(r)}$ 计算组内每一个奖励对应的优势；
+   对组内 $G$ 个输出 $o_i$，计算每一个 reward function 下的奖励 $r_\phi$，并按优势函数 $\hat{A}_{i,t}= \bar{r}_i =\frac{r_i-\text{mean}(r)}{\text{std}(r)}$ 计算组内每一个奖励对应的优势；
 3. estimating the KL divergence（下面是 KL 散度的无偏估计）
 
    $$
