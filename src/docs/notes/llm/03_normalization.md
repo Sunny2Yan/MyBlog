@@ -247,9 +247,9 @@ $$
 
 对于 LayerNorm 的导数：
 $$
-\hat{x}_i = \frac{x_i - \mu}{\sigma}, \quad \mu = \frac{1}{d} \sum_{i=1}^d x_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^d (x_i - \mu)^2
+\hat{z}_i = \frac{z_i - \mu}{\sigma}, \quad \mu = \frac{1}{d} \sum_{i=1}^d z_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^d (z_i - \mu)^2
 $$
-这里的 $x_i = x_{i-1} + F(x_{i-1})$，下面对 $\hat{x_i}$ 求导:
+这里的 $z_i = x_{i-1} + F(x_{i-1})$，下面对 $\hat{z_i}$ 求导:
 $$
 \frac{\partial \hat{z}_i}{\partial z_j} = \frac{1}{\sigma} \left( \delta_{ij} - \frac{1}{d} - \frac{(z_i - \mu)(z_j - \mu)}{d \sigma^2} \right)
 $$

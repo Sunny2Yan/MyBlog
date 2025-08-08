@@ -36,7 +36,7 @@ features:
 
 ## 梦想启航
 
-这里待定
+待定
 
 ```sh
 Hello World!

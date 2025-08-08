@@ -45,7 +45,7 @@ export default defineConfig({
           {text: 'LeetCode', link: '/docs/codes/leetcode/01_sort.md'},
           {text: 'Model', link: '/docs/codes/models/llama_4.md'}]},
       { text: '笔记', items: [
-          {text: 'LLM', link: '/docs/notes/llm/first.md'}, // llm下的第一个文章
+          {text: 'LLM', link: '/docs/notes/llm/01_data_process.md'}, // llm下的第一个文章
           {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'}]},
       {text: '论文', items: [
           {text: 'Models', link: '/docs/papers/models/qwen3.md'},

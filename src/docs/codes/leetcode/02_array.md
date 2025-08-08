@@ -171,7 +171,26 @@ def merge_arr(intervals: list[list[int]]) -> list[list[int]]:
     return res
 ```
 
-3. 三数之和
+3. 两数之和 
+
+(leetcode 1) 给定一个数组（无重复），找出该数组中和为目标值 target 的两个整数，并返回数组下标
+- 思路：数组无重复，可以将找过的存储在 hash 表中
+- O(n); O(n)
+
+```python
+def two_sum(nums: list[int], target: int):
+    if len(nums) <= 1:
+        return []
+
+    num_hash = dict()
+    for i, num in enumerate(nums):
+        if target - num in num_hash:
+            return [i, num_hash[target - num]]
+        else:
+            num_hash[num] = i
+```
+
+4. 三数之和
 
 (leetcode 15) 给定数组nums，返回数组中三个不同的元素使其和为0。
 - 思路：先排序为应用双指针做准备，再遍历确定一个元素，剩余元素应用双指针确定。

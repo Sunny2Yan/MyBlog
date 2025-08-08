@@ -167,3 +167,65 @@ class CompleteCommand(CLISubcommand):
 该模块位于：`vllm/vllm/entrypoints/cli/serve.py`。
 <a href="https://github.com/vllm-project/vllm/blob/main/vllm/entrypoints/cli/serve.py" target="_blank" rel="noreferrer">Code Addr</a>
 
+```python
+class ServeSubcommand(CLISubcommand):
+    """The `serve` subcommand for the vLLM CLI. """
+
+    def __init__(self):
+        self.name = "serve"
+        super().__init__()
+
+    @staticmethod
+    def cmd(args: argparse.Namespace) -> None:
+        # If model is specified in CLI (as positional arg), it takes precedence
+        if hasattr(args, 'model_tag') and args.model_tag is not None:
+            args.model = args.model_tag
+
+        if args.headless:
+            run_headless(args)
+        else:
+            uvloop.run(run_server(args))
+
+    def validate(self, args: argparse.Namespace) -> None:
+        validate_parsed_serve_args(args)
+
+    def subparser_init(
+            self,
+            subparsers: argparse._SubParsersAction) -> FlexibleArgumentParser:
+        serve_parser = subparsers.add_parser(
+            "serve",
+            help="Start the vLLM OpenAI Compatible API server.",
+            description="Start the vLLM OpenAI Compatible API server.",
+            usage="vllm serve [model_tag] [options]")
+        serve_parser.add_argument("model_tag",
+                                  type=str,
+                                  nargs='?',
+                                  help="The model tag to serve "
+                                  "(optional if specified in config)")
+        serve_parser.add_argument(
+            "--headless",
+            action='store_true',
+            default=False,
+            help="Run in headless mode. See multi-node data parallel "
+            "documentation for more details.")
+        serve_parser.add_argument(
+            '--data-parallel-start-rank',
+            '-dpr',
+            type=int,
+            default=0,
+            help='Starting data parallel rank for secondary nodes.')
+        serve_parser.add_argument(
+            "--config",
+            type=str,
+            default='',
+            required=False,
+            help="Read CLI options from a config file."
+            "Must be a YAML with the following options:"
+            "https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#cli-reference"
+        )
+
+        serve_parser = make_arg_parser(serve_parser)
+        show_filtered_argument_or_group_from_help(serve_parser)
+        serve_parser.epilog = VLLM_SERVE_PARSER_EPILOG
+        return serve_parser
+```
