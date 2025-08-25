@@ -8,6 +8,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ### 2.1 管理python版本
 
+虚拟环境 (venv / uv venv) 不会“创造”Python，它只是复制/链接一个已经存在的解释器。因此只能用机器上已有的 Python 版本来创建虚拟环境。
+可以使用 `uv python` 来对机器上的 python 版本进行管理。它会把对应的 Python 版本下载到 `~/.local/share/uv/python/` 目录下，完全独立于系统。
+
 ```bash
 uv python install 3.11  # 安装 Python3.11 版本。
 uv python list  # 查看可用的 Python 版本。
@@ -22,7 +25,7 @@ uv python uninstall  # 卸载 Python 版本。
 ```bash
 
 uv venv  # 创建一个虚拟环境, 默认.venv。
-uv venv --python 3.11 .venv1  # 创建一个名为.venv1的虚拟环境
+uv venv --python=3.11 .venv1  # 创建一个名为.venv1的虚拟环境
 
 source .venv1/bin/activate  # linux激活环境
 .venv1\Scripts\Activate  # win激活环境
@@ -31,7 +34,7 @@ rm -rf .venv1  # 删除环境
 
 uv pip insatll XXX  # 在环境中添加依赖
 uv pip uninstall XXX  # 删除依赖
-uv pip show  # 显示有关已安装软件包的详细信息
+uv pip show XXX  # 显示有关已安装软件包的详细信息
 uv pip freeze  # 列出已安装的软件包及其版本
 uv pip check  # 检查当前环境是否有兼容的包
 uv pip list  # 列出已安装的软件包

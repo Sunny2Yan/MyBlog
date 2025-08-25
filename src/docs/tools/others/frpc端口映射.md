@@ -67,3 +67,13 @@ authentication_timeout = 900  # 认证超时时间（秒）
 # 如果使用 systemd 管理
 sudo systemctl restart frps
 ```
+
+
+vpn 映射到服务器
+```bash
+# 1. 本地连接
+ssh root@ip -p port -R 7890:127.0.0.1:7890
+
+# 2. 服务器添加环境变量
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+```

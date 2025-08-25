@@ -6,9 +6,112 @@
 - Value Based：学习值函数，然后根据值函数导出一个策略，学习过程中并不存在一个显式的策略；
 - Policy Based：直接显式地学习一个目标策略。
 
-Policy Based首先需要将 policy 参数化。设目标策略 $\pi_\theta$ 是一个随机性策略，并且处处可微。
-可以用一个神经网络模型来对其建模，即：输入某个状态，然后输出一个动作的概率分布。
-最终目标是要寻找一个最优策略并最大化这个策略在环境中的期望回报。将此策略学习的目标函数定义为：
+
+::: tip
+Trajectory: 智能体在环境中从初始状态开始，按照某个策略进行决策所产生的一条完整的状态-动作序列;
+Episode: 从一个初始状态开始，到某个终止状态结束的一个完整交互过程
+轨迹（Trajectory）是一个回合（episode）中每个状态以及对应状态下采取的动作所构成的序列。
+:::
+
+对于 policy 网络 $\pi_\theta$，输入 observation，输出 action 的概率。轨迹 $\tau = (s_1, a_1, s_2, a_2, \dots, s_T, a_T)$ 发生的概率为：
+
+$$
+\begin{aligned}
+p_\theta(\tau) &= p_\theta(s_1, a_1, \ldots, s_T, a_T) \\
+&= p(s_1) p_\theta(a_1 | s_1) p(s_2 | s_1, a_1) p_\theta(a_2 | s_2) p(s_3 | s_2, a_2) \ldots \\
+&= p(s_1) \prod_{t=1}^{T} p_\theta(a_t | s_t) p(s_{t+1} | s_t, a_t)
+\end{aligned}
+$$
+
+其中，$p_\theta(a_t, s_t)$ 是策略部分，与参数 $\theta$ 相关，$p(s_{t+1} | a_t, s_t)$ 是环境动力学部分，与参数 $\theta$ 无关。
+
+对于这个单条轨迹的 Reward 为：
+
+$$
+R(\tau) = \sum_t r_t = \sum_t r(s_t, a_t)
+$$
+
+对 policy 的 Expected Reward 为：
+
+$$
+\bar{R}_\theta = \sum_\tau R(\tau) p_\theta(\tau) = \mathbb{E}_{\tau \sim p_\theta(\tau)}[R(\tau)]
+$$
+
+Policy-based 方法的目标就是找到一个最优的 policy 参数 $\theta^*$ 使得期望奖励最大化。
+
+$$
+\theta^* = \arg\max_\theta \bar{R}_\theta = \arg\max_\theta \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[ \sum_t r(s_t, a_t) \right]
+$$
+
+令 $\bar{R}_\theta = J(\theta)$，则目标函数为：
+
+$$
+J(\theta) = \mathbb{E}_{\tau \sim p_\theta(\tau)}[R(\tau)] = \int p_\theta(\tau) R(\tau) d\tau
+$$
+
+基于采样可得：
+
+$$
+J(\theta) = \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[ \sum_{t=1}^T r(s_t, a_t) \right] \approx \frac{1}{N} \sum_{n=1}^N \sum_{t=1}^T r(s_t^n, a_t^n)
+$$
+
+解决上述优化问题常用最速下降法，这里称为策略梯度（Policy Gradient）或者策略优化（Policy Optimization）。对目标函数 $ J(\theta) $ 进行求导：
+
+$$
+\nabla_\theta J(\theta) = \int \nabla_\theta p_\theta(\tau) \, R(\tau) \, d\tau
+$$
+
+由于对概率 $ p_\theta(\tau) = p(s_1) \prod_{t=1}^T p_\theta(a_t | s_t) \, p(s_{t+1} | s_t, a_t) $ 求导非常困难。为方便求导，可引入以下公式：
+
+$$
+\nabla_\theta p_\theta(\tau) = p_\theta(\tau) \frac{\nabla_\theta p_\theta(\tau)}{p_\theta(\tau)} = p_\theta(\tau) \nabla_\theta \log p_\theta(\tau)
+$$
+
+因而，$ J(\theta) $ 的导数可写成以下形式：
+
+$$
+\nabla_\theta J(\theta) = \int \nabla_\theta p_\theta(\tau) \, R(\tau) \, d\tau = \int p_\theta(\tau) \nabla_\theta \log p_\theta(\tau) \, R(\tau) \, d\tau = \mathbb{E}_{\tau \sim p_\theta(\tau)}[\nabla_\theta \log p_\theta(\tau) \, R(\tau)]
+$$
+
+对 $ p_\theta(\tau) = p(s_1) \prod_{t=1}^T p_\theta(a_t | s_t) \, p(s_{t+1} | s_t, a_t) $ 两边取 log 有：
+
+$$
+\log p_\theta(\tau) = \log p(s_1) + \sum_{t=1}^T \left[\log p_\theta(a_t | s_t) + \log p(s_{t+1} | s_t, a_t)\right]
+$$
+
+对 $\log p_\theta(\tau)$ 求导，其中第一项和第三项与 $\theta$ 无关，导数为零，因此可得：
+
+$$
+\nabla_\theta \log p_\theta(\tau) = \nabla_\theta \sum_{t=1}^T \log p_\theta(a_t | s_t)
+$$
+
+即：
+
+$$
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[ \nabla_\theta \sum_{t=1}^T \log p_\theta(a_t | s_t) \, R(\tau) \right]
+= \mathbb{E}_{\tau \sim p_\theta(\tau)} \left[ \left( \sum_{t=1}^T \nabla_\theta \log p_\theta(a_t | s_t) \right) R(\tau) \right]
+$$
+
+上式很难求得解析解，因而可基于采样进行求解：
+
+$$
+\begin{aligned}
+\nabla_\theta J(\theta) &\approx \frac{1}{N} \sum_{n=1}^N \left( \sum_{t=1}^T \nabla_\theta \log p_\theta(a_t^n | s_t^n) \right) R(\tau^n)  \\
+&\approx \frac{1}{N} \sum_{n=1}^N \left( \sum_{t=1}^T \nabla_\theta \log p_\theta(a_t^n | s_t^n) \right) \left( \sum_{t=1}^T r(s_t^n, a_t^n) \right)  \\
+&\approx \frac{1}{N} \sum_{n=1}^N \nabla_\theta \log P(\tau^n, \theta) \, R(\tau^n)
+\end{aligned}
+$$
+
+最后，使用梯度上升（Gradient Ascent）对参数 $\theta$ 进行更新：
+
+$$
+\theta \leftarrow \theta + \alpha \nabla_\theta J(\theta)
+$$
+
+
+采用前文的符号定义：
+---
+将此策略学习的目标函数定义为：
 
 $$
 J(\theta) = \mathbb{E}_{s_0}[V^{\pi_\theta}(s_0)]
