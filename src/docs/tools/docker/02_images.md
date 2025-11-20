@@ -70,4 +70,12 @@ docker build -t xxx .  # -t xxx 为新镜像命名，.指当前目录
 # 3.分发镜像
 docker tag xxx:v1      # 给镜像打标签
 docker push xxx        # 推送到xxx仓库
+
+# 4.镜像迁移
+docker save -o image_name.tar image_name:tag  # 保存单个镜像
+docker save $(docker images -q) -o all_images.tar  # 保存所有镜像
+docker save -o my_images.tar image1:tag1 image2:tag2  # 或者保存特定镜像
+
+scp image_name.tar user@target_server:/path/to/destination/
+docker load -i image_name.tar  # 镜像加载
 ```

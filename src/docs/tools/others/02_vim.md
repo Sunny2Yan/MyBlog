@@ -67,6 +67,11 @@ ctrl + r  # 撤销 u 的操作，即还原撤销
 ".vimrc
 "This is xxxx's vimrc
 
+"显示中文
+set encoding=utf-8
+set fileencodings=utf-8,gbk,gb2312,big5
+set fileencoding=utf-8
+
 set nocompatible "不使用兼容模式
 set nu "显示行号
 syntax on "语法高亮

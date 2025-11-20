@@ -101,8 +101,8 @@ docker rm -f $(docker ps -aq)  # 删除所有容器
 # 6. 容器交互
 docker exec - it 容器名/容器id bash  # 进入容器内部执行命令行
    exit                        # 退出
-docker cp 容器名/容器id: 容器资源路径本地路径  # 从容器复制文件到本地
-docker cp 文件/目录(local)容器名/容器id: /资源路径
+docker cp 容器名/容器id:容器路径 本地路径  # 将容器中的文件复制到本地
+docker cp 文件/目录(local) 容器名/容器id:/资源路径  # 将本地文件复制到容器中
 
 # 7. 数据卷 volume
 # 将主机目录中全部内容会被清空
@@ -115,4 +115,17 @@ docker commit -m "描述" -a "作者" 容器id 镜像名
 
 # 9. 将镜像备份出来
 docker save 镜像名: Tag(版本号) -o 文件名(保存在哪个文件)
+```
+
+## docker 打包
+
+```bash
+# 1. 打包
+docker save <docker images ID> -o <dacker_name.tar>
+
+# 2. 加载压缩包
+tar -xvf <docker_name.tar> -C ./docker_name/
+cd docker_name
+tar -cf - . | docker load
+docker run -it <IMAGE_NAME> /bin/bash
 ```
