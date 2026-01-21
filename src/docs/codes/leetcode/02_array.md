@@ -108,7 +108,7 @@ def transpose_matrix(matrix: list[list[int]]) -> list[list[int]]:
 2. 顺时针打印矩阵
 
 (剑指offer 29) 
-- 思路：如果 $left <= right or up <= down$ 顺时针打印，先打印顶横和右竖，再打印下横和左竖，但$left \neq right and up\neq down$。
+- 思路：如果 $left <= right or up <= down$ 顺时针打印，先打印顶横和右竖，再打印下横和左竖，但$left \neq right ~~ and ~~up~~\neq down$。
 - O(n^2)；空O(n^2)
 
 ```python

@@ -1,1 +1,193 @@
 # 双指针
+
+一般解决有序数据或字符串
+
+::: tips
+双指针算法的 while 处是否添加 =？
+
+- 如果 l == r 这一状态“没有意义 / 不需要处理”，就用 <
+- 如果 l == r 这一状态“仍然是一个有效情况”，就用 <=
+
+不取等号示例:
+1. 盛水问题：取等号时，宽度 r - l 为 0，就无意义；
+2. 反转数组、回文判断：剩下单个数字时，反转无意义；
+
+取等号示例：
+1. 二分查找：左右指针重合的数字也是待查找数字，取等号有意义
+:::
+
+
+1. 和为s的两个数字
+
+(剑指offer 57) 在递增排序的数组中找出和为target的两个数。
+- 思路：双指针
+- 时O(n); 空O(1)
+
+```python
+def two_sum(nums: list[int], target: int) -> list[int]:
+    left, right = 0, len(nums) - 1
+
+    while left < right:
+        s = nums[left] + nums[right]
+        if s == target:
+            return [nums[left], nums[right]]
+        elif s < target:
+            left += 1
+        else:
+            right -= 1
+
+    return []
+```
+
+2. 三数之和
+
+(leetcode 15) 给定数组nums，返回数组中三个不同的元素使其和为0。
+- 思路：先排序为应用双指针做准备，再遍历确定一个元素，剩余元素应用双指针确定。
+- 时O(n^2); 空O(1)
+
+```python
+def three_sum(nums: list[int]) -> list[list[int]]:
+    nums.sort()
+    res = []
+
+    for i in range(len(nums) - 2):
+        if i > 0 and nums[i] == nums[i - 1]:  # 过滤相同的数
+            continue
+
+        left, right = i + 1, len(nums) - 1
+        while left < right:
+            s = nums[i] + nums[left] + nums[right]
+            if s == 0:
+                res.append([nums[i], nums[left], nums[right]])
+                while left + 1 < right and nums[left + 1] == nums[left]:
+                    left += 1
+                while left < right - 1 and nums[right - 1] == nums[right]:
+                    right -= 1
+                left += 1
+                right -= 1
+
+            elif s < 0:
+                left += 1
+            else:
+                right -= 1
+
+    return res
+```
+
+3. 和为s的连续正数序列
+
+(剑指offer 57) 给定正整数target，返回所有和为target的连续正整数序列。
+- 思路：定义两个指针，且右指针小于target。利用等差数列求和公式S_n=n/2 * (a_1 + a_n)
+- 时O(n); 空O(1)
+
+```python
+def n_sum_sequence(target: int) -> list[list[int]]:
+    res = []
+    left, right = 1, 2
+
+    while left < right < target:
+        s = (left + right) * (right - left + 1) / 2
+        if s == target:
+            res.append(list(range(left, right + 1)))
+            left += 1
+            right += 1
+        elif s < target:
+            right += 1
+        else:
+            left += 1
+    return res
+```
+
+4. 合并两个有序数组
+
+(leetcode 88) 将升序数组nums2按升序合并到升序数组nums1（长度为n+m）中。
+- 思路：分别为两数组定义一个指针，倒序遍历，注意指针左移的规则。
+- 时O(n); 空O(1)
+
+```python
+def merge_nums(nums1: list[int], m: int, nums2: list[int], n: int) -> list[int]:
+    left, right = m - 1, n - 1
+
+    for i in range(m + n - 1, -1, -1):
+        if right < 0 or (left >= 0 and nums1[left] >= nums2[right]):
+            nums1[i] = nums1[left]
+            left -= 1
+        else:
+            nums1[i] = nums2[right]
+            right -= 1
+
+    return nums1
+```
+
+5. 盛最多水的容器
+
+(leetcode 11) 给定数组height，每个元素表示容器的高度，找出两个高度，使其构成的容器可以容纳最多的水。
+- 思路：定义左右两个指针，s=min(h[l], h[r])*(r-l)，且高度小的指针移动。
+- 时O(N); 空O(1)
+
+```python
+def max_area(height: list[int]) -> int:
+
+    if len(height) < 2: return 0
+    left, right = 0, len(height) - 1
+    res = 0
+
+    while left < right:
+        s = min(height[left], height[right]) * (right - left)
+        res = max(res, s)
+        if height[left] <= height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return res
+```
+
+6. 接雨水
+
+(leetcode 42) 给定n个非负整数表示宽度为 1 的柱子的高度，计算下雨之后能接多少雨水。
+- 思路：$每个位置能接的水量 = min(左侧最高, 右侧最高) - 当前高度$，因此需要维护三个指针（left_max, right_max, cur），可以从两端往中间找，则当前指针可分为左、右双指针。其结果为最大值减去当前指针。
+- 时O(n); 空O(1)
+
+```python    
+def trap(height: list[int]) -> int:
+    if len(height) <= 2: return 0
+    left, right = 0, len(height) - 1
+    left_max, right_max = 0, 0
+    res = 0
+
+    while left < right:
+        left_max = max(left_max, height[left])
+        right_max = max(right_max, height[right])
+        
+        if left_max <= right_max:  # min(左侧最高, 右侧最高)
+            res += left_max - height[left]
+            left += 1
+        else:
+            res += right_max - height[right]
+            right -= 1
+
+    return res
+```
+
+7. 无重复字符串的最长子串
+
+(LCR 016) 给定一个字符串 s，找出其中不含有重复字符的最长连续子字符串的长度.
+- 思路：双指针，判断 s[right]是否在s[left: right]中，在则更新res，不在则右移left（注意可能会右移多次）
+- 时O(n); 空O(1)
+
+```python
+def length_of_longest_substring(s: str) -> int:
+    if not s:
+        return 0
+    res = 1
+    left, right = 0, 1
+    while right < len(s):
+        if s[right] not in s[left:right]:
+            res = max(res, right-left+1)
+        else:
+            while s[right] in s[left:right]:
+                left += 1
+        right += 1
+    return res
+```
