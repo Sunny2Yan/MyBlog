@@ -137,6 +137,25 @@ V = compute_value(P_from_mdp_to_mrp, R_from_mdp_to_mrp, gamma, 5)
 
 ![](/imgs/notes/rl/markov/mc.png)
 
+例如，对 $f(x)$ 在区间 $[a, b]$ 上求积分 $\int_a^b f(x) dx$，当积分曲线难以解析时，则无法直接求积分。这时可以采用 MC：
+在区间 $[a, b]$ 上采样 $\{x_1, x_2, \dots, x_n\}$，其函数值为 $\{f(x_1), f(x_2), \dots, f(x_n)\}$，于是有：
+$\int_a^b f(x) dx = \frac{b-a}{N}\sum_{i=1}^{N} f(x_i)$。
+
+::: tip 重要性采样
+MC 采样会随着采样数的增长而越来越精确，如何在采样一定数量的基础上来增加准确率，且减小方差呢？
+
+在抽样时，可以对重要区域多采样，对非重要区域少采样。
+对于原函数 $f(x)$ 定义在分布 $\pi(x)$ 上，我们无法从 $\pi(x)$ 上直接采样，这就需要引入一个简单的分布 $p(x)$，从它采样来间接的求出 $f(x)$ 在分布 $\pi(x)$ 下的积分期望。
+
+已知 $\mathbb{E}[f] = \int_x \pi(x)f(x) dx$ 无法直接求出，借助 $p(x)$ 采样 $\{x_1, x_2, \dots, x_n\}$ 来估计 $f$ 在分布 $p(x)$ 下的期望：
+$\mathbb{E} [f] = \int_x p(x)f(x) dx \approx \frac{1}{N}\sum_{i=1}^N f(x_i)$。可以对式子改写：$\pi(x)f(x)=p(x)\frac{\pi(x)}{p(x)}f(x)$，于是有：
+
+$$\mathbb{E}(f) = \int_x p(x)\frac{\pi(x)}{p(x)}f(x) dx$$
+
+上式可以看作函数 $\frac{\pi(x)}{p(x)}f(x)$ 在分布 $p(x)$ 上的期望。当在 $p(x)$ 上采样 $\{x_1, x_2, \dots, x_n\}$ 后可以估计 $f$ 的期望
+$\mathbb{E} [f] = \frac{1}{N}\sum_{i=1}^{N}{\frac{\pi(x_{i})}{p(x_{i})}f(x_{i})}$，其中 $\frac{\pi(x_i)}{p(x_i)}$ 就是**重要性权重**。
+:::
+
 一个状态的价值是它的期望回报，于是用策略在 MDP 上采样很多条序列，计算从这个状态出发的回报再求其期望即可：
 $$V^{\pi}(s) = \mathbb{E}_{\pi}(G_t | S_t=s) \approx \frac{1}{N} \sum_{i=1}^N G_t^{(i)}$$
 
