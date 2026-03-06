@@ -1,4 +1,4 @@
-# 多模态图像resize
+# VLM Image Resize
 
 ## qwen-vl 处理
 [addr](https://github.com/QwenLM/Qwen3-VL/blob/main/qwen-vl-utils/src/qwen_vl_utils/vision_process.py)
