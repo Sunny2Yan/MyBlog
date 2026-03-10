@@ -33,7 +33,7 @@ y (Modify PATH variable)
 3. 更新：`rustup update`；
 4. 卸载：`rustup self uninstall`。
 
-::: info 补充 
+::: warning 补充 
 1. 安装 Rust 的同时也会在本地安装⼀个⽂档服务，⽅便离线阅读：运⾏ `rustup doc` 在浏览器打开本地⽂档。
 2. IDE推荐使用 VSCode，推荐插件有：
  - `rust-analyzer`：Rust 语⾔的插件；
@@ -85,7 +85,7 @@ cargo init Project  # Project目录已经存在的情况下使用
 #     └── main.rs
 ```
 
-::: info 补充
+::: warning 补充
 Cargo 期望源文件存放在 *src* 目录中，项目根目录只存放 README、license 信息、配置文件和其他跟代码无关的文件。
 :::
 
@@ -104,7 +104,7 @@ cargo run  # 编译并运行
 cargo check  # 快速检查代码确保其可以编译，不生成可执行文件
 ```
 
-::: info 补充
+::: warning 补充
 默认以 debug 模式编译，**编译速度会⾮常快，但运⾏速度就慢**；使用 `cargo build --release` 或 `cargo run --release` 可以编译为最终版本，**编译慢但运行快**。
 :::
 
@@ -152,6 +152,6 @@ Rust 代码文件中，通常有 3 种注释：
 //! functionality for building portable Rust software.
 ```
 
-::: info 补充
+::: warning 补充
 注：文档注释和模块注释用于生成 html 文档，使用命令 `rustdoc main.rs` 或 `cargo doc` 即可。
 :::
