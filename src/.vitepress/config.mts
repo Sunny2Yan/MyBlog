@@ -43,7 +43,8 @@ export default defineConfig({
       { text: '家', link: '/' },
       {text: '代码', items: [
           {text: 'LeetCode', link: '/docs/codes/leetcode/01_sort.md'},
-          {text: 'Model', link: '/docs/codes/models/llama_4.md'}]},
+          {text: 'Model', link: '/docs/codes/models/llama_4.md'},
+          {text: 'Rust', link: '/docs/codes/rust/01_base.md'}]},
       { text: '笔记', items: [
           {text: 'LLM', link: '/docs/notes/llm/01_data_process.md'},
           {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'},
