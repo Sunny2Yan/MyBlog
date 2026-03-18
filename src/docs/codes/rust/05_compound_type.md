@@ -61,7 +61,7 @@ fn main() {
 }
 ```
 
-<img src="/imgs/tools/rust/3-5.png" style="zoom:50%;" />
+<img src="/imgs/codes/rust/3-5.png" style="zoom:50%;" />
 
 于是可以使用切片来重写第一个函数：
 
