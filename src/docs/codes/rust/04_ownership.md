@@ -200,7 +200,7 @@ fn calculate_length(s: &String) -> usize {  // s 是 String 的引用
 `&s1` 语法是创建一个 **指向** `s1` 的引用，但是并不拥有它。因为并不拥有这个值，所以当引用停止使用时，它所指向的值也不会被丢弃。
 同理，函数形参使用 `&` 来表明参数 `s` 的类型是一个引用。
 
-<img src="/imgs/tools/rust/3-4.png" style="zoom:50%;" />
+<img src="/imgs/codes/rust/3-4.png" style="zoom:50%;" />
 
 
 当变量 `s` 停止使用时并不丢弃引用指向的数据，因为 `s` 并没有所有权。由于原始变量 `s1` 不可变，创建的引用 `s` 值也是不可变的。
