@@ -42,31 +42,33 @@ export default defineConfig({
     nav: [
       { text: '家', link: '/' },
       {text: '代码', items: [
-          {text: 'LeetCode', link: '/docs/codes/leetcode/01_sort.md'},
-          {text: 'Model', link: '/docs/codes/models/llama_4.md'},
-          {text: 'Rust', link: '/docs/codes/rust/01_base.md'}]},
+        {text: 'LeetCode', link: '/docs/codes/leetcode/01_sort.md'},
+        {text: 'Model', link: '/docs/codes/models/llama_4.md'},
+        {text: 'Rust', link: '/docs/codes/rust/01_base.md'},
+        {text: 'TypeScript', link: '/docs/codes/typescript/01_base.md'}
+      ]},
       { text: '笔记', items: [
-          {text: 'LLM', link: '/docs/notes/llm/01_data_process.md'},
-          {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'},
-          {text: 'Others', link: '/docs/notes/others/federated_learning.md'}
-          ]},
+        {text: 'LLM', link: '/docs/notes/llm/01_data_process.md'},
+        {text: 'RL', link: '/docs/notes/rl/01_markov_decision.md'},
+        {text: 'Others', link: '/docs/notes/others/federated_learning.md'}
+      ]},
       {text: '论文', items: [
-          {text: 'Models', link: '/docs/papers/models/qwen3.md'},
-          {text: 'Multimodal', link: '/docs/papers/multimodal/qwen2.5_omni.md'}
-        ]},
+        {text: 'Models', link: '/docs/papers/models/qwen3.md'},
+        {text: 'Multimodal', link: '/docs/papers/multimodal/qwen2.5_omni.md'}
+      ]},
       {text: '工具', items: [
-          {text: 'Linux', link: '/docs/tools/linux/01_base_command.md'},
-          {text: 'Python', link: '/docs/tools/python/'},
-          {text: 'C++', link: '/docs/tools/c++/'},
-          {text: 'Rust', link: '/docs/tools/rust/01_annotation.md'},
-          {text: 'DataBase', link: '/docs/tools/database/'},
-          {text: 'Docker', link: '/docs/tools/docker/01_docker.md'},
-          {text: 'Configuration', link: '/docs/tools/configuration/01_ini.md'},
-          {text: 'Others', link: '/docs/tools/others/01_setuptools.md'}
-        ]},
+        {text: 'Linux', link: '/docs/tools/linux/01_base_command.md'},
+        {text: 'Python', link: '/docs/tools/python/'},
+        {text: 'C++', link: '/docs/tools/c++/'},
+        {text: 'Rust', link: '/docs/tools/rust/01_annotation.md'},
+        {text: 'DataBase', link: '/docs/tools/database/'},
+        {text: 'Docker', link: '/docs/tools/docker/01_docker.md'},
+        {text: 'Configuration', link: '/docs/tools/configuration/01_ini.md'},
+        {text: 'Others', link: '/docs/tools/others/01_setuptools.md'}
+      ]},
       {text: '杂记', items: [
-          {text: 'other', link: '/'}
-        ]}
+        {text: 'other', link: '/'}
+      ]}
     ],
     // 侧边栏
     sidebar: {"/docs": set_sidebar("/docs")},

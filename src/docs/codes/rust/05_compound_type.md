@@ -1,55 +1,8 @@
 # 复合类型
 
+## 切片（Slice）
 
-## 字符串与切片
-
-### 1.1 字符串类型
-- str: 不可变字符串类型
-- String: 可变字符串；在堆上声明
-
-注：Rust的字符串Slice操作实际上是切的bytes。若切片的位置正好是一个Unicode字符的内部，Rust会发生Runtime的panic
-
-```rust
-let x = "Hello";
-let x:&'static str = "Hello";  // 同上等价
-
-let mut y = String::from("hello");  // to_string()将str转成String
-y.push_str(", world")
-
-let z = &*y  // 将String类型变成str
-```
-
-### 1.2 切片（Slice）类型
-
-*slice* 允许你引用集合中一段连续的元素序列，而不用引用整个集合。slice 是一类引用，所以它没有所有权。
-
-```rust
-// 找第一个单词的结尾索引
-fn first_word(s: &String) -> usize {  // usize是一个无符号整数类型，大小可以根据系统自动调整
-    let bytes = s.as_bytes();  // 转化为字节数组
-
-    for (i, &item) in bytes.iter().enumerate() {  // 使用 iter 方法在字节数组上创建一个迭代器
-        if item == b' ' {
-            return i;  // 返回在该字符串中找到的第一个单词
-        }
-    }
-    s.len()  // 如果未找到空格，则该返回字符串长度
-}
-```
-
-此时，返回的是一个独立的 `usize`，它只在 `&String` 的上下文中才是一个有意义的数字。即它是一个与 `String` 相分离的值，无法保证将来它仍然有效。具体例子如下：
-
-```rust
-fn main() {
-    let mut s = String::from("hello world");
-    let word = first_word(&s);  // 调用上面函数，word 的值为 5
-
-    s.clear(); // 这清空了字符串，使其等于 ""
-    // word 在此处的值仍然是 5，但是没有更多的字符串可以有效地应用数值 5。word 的值现在完全无效！
-}   // 即 word 的索引与 s 中的数据不再同步
-```
-
-此时，Rust 为这个问题提供了一个解决方法，即**字符串切片**。
+*slice* 允许引用集合中一段连续的元素序列，而不用引用整个集合。slice 是一类引用，所以它没有所有权。
 
 ```rust
 fn main() {
@@ -63,31 +16,25 @@ fn main() {
 
 <img src="/imgs/codes/rust/3-5.png" style="zoom:50%;" />
 
-于是可以使用切片来重写第一个函数：
+**字符串切片的类型标识是 `&str`**。
 
 ```rust
-fn first_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
-    &s[..]
-}
-
 fn main() {
     let mut s = String::from("hello world");
     let word = first_word(&s);
 
-    s.clear(); // 错误。clear 清空 String，获取一个可变引用；println! 又使用了 word 中的不可变引用
-    // 可以将上述函数改为 fn first_word(s: &str) -> &str {}, 且 s 为不可变。
+    s.clear(); // .clear()是清空字符串，使其等于 ""，这里报错
+    // clear 清空 String，获取一个可变引用；println! 又使用了 word 中的不可变引用
     println!("the first word is: {}", word);
+}
+
+// 可以将函数改为 fn first_word(s: &str) -> &str {}, 且 s 为不可变。
+fn first_word(s: &String) -> &str {
+    &s[..1]
 }
 ```
 
-#### 其他类型切片
+**其他类型切片：**
 
 ```rust
 // 1.对数组切片
@@ -97,6 +44,47 @@ let slice = &a[1..3];
 assert_eq!(slice, &[2, 3]);
 ```
 
+## 字符串类型
+- `&str`: 不可变字符串类型
+- `String`: 可变字符串；在堆上声明
+
+注：Rust的字符串Slice操作实际上是切的bytes。若切片的位置正好是一个Unicode字符的内部，Rust会发生Runtime的panic
+
+```rust
+let x = "Hello";
+let x: &str = "Hello";  // &str是一个不可变引用，同上等价
+
+let mut y = String::from("hello");  // to_string()将str转成String
+y.push_str(", world")
+
+let z = &*y  // 将String类型变成str
+```
+
+字符串操作
+
+```rust
+fn main() {
+    let mut s = String::from("Hello World");
+    
+    // s.push('!');  // 只能追加单个字符
+    s.push_str(" rust");
+    println!("追加字符串 push_str() -> {}", s);
+
+    // s.insert(5, ',');  // 只能插入单个字符
+    s.insert_str(6, " I like");
+    println!("插入字符串 insert_str() -> {}", s);
+    
+    let new_string = s.replace("rust", "RUST");  // 字符串替换
+    let new_string = s.replacen("rust", "RUST", 1);  // 第三个参数表示只替换匹配的前一个
+    string_replace_range.replace_range(7..8, "R");  // 表示替换的范围
+    
+    let mut string_pop = String::from("rust pop 中文!");
+    let p1 = string_pop.pop();  // p1 = Some('!',)  // 删除最后一个
+    
+    
+    
+}
+```
 
 - 元组(tuple)：元组长度固定，元组中的每个元素的类型不必相同，用 `tup` 声明元组类型；
 - 数组(array)：数组长度固定，数组中的每个元素的类型必须相同，vector 类型是标准库提供的允许增长和缩小长度的类似数组的集合类型，一般不确定长度的用 vector；
