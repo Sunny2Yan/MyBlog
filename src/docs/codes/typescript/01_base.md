@@ -40,6 +40,7 @@ rm -rf ...  # rm -rf ~/.npm
 which pnpm
 rm -rf ...
 ```
+:::
 
 2. 运行 `Hello World`
 
