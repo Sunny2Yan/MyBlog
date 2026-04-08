@@ -77,7 +77,7 @@ bun upgrade
 rm -rf ~/.bun  
 ```
 
-## 2. 运行 `Hello World`
+2. 运行 `Hello World`
 
 ```typescript
 // app.ts
@@ -91,7 +91,7 @@ console.log(message);
 bun run app.ts
 ```
 
-## 3. `bun` 管理项目
+3. `bun` 管理项目
 
 ```bash
 bun init  # 初始化项目
