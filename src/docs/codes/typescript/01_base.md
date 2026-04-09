@@ -2,7 +2,7 @@
 
 TypeScript 是 JavaScript 的超集，是建立在 JavaScript 之上的编程语言。TypeScript 代码会被编译器编译成原生 JavaScript 代码再运行。
 
-TypeScript 中增加了类型系统来避免一些由 JavaScript 中的动态类型引发的问题。
+TypeScript **不教“如何编程”，只教“如何类型安全”**。它增加了类型系统来避免一些由 JavaScript 中的动态类型引发的问题。
 
 ## 安装
 
